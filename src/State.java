@@ -9,10 +9,10 @@ public class State {
 	public ArrayList<Character> links = new ArrayList<>();
 	public ArrayList<State> statesOfLinks = new ArrayList<>();
 	
-	boolean hasChildren = false;
 	State lastLinkAdded = null;
 	Character charOfLastLinkAdded = null;
 	ArrayList<String> rightHandStrings = new ArrayList<>();
+	int childrenCount = 0;
 	
 	public State(int NN, boolean accept) {
 //		creationOrderNumber = CON;
@@ -21,6 +21,7 @@ public class State {
 	}
 	
 	public void removeLink(State s, Character ch) {
+		childrenCount--;
 		links.remove(ch);
 		statesOfLinks.remove(s);
 		lastLinkAdded = null;
@@ -28,6 +29,7 @@ public class State {
 	}
 	
 	public void addLink(State s, Character ch) {
+		childrenCount++;
 		links.add(ch);
 		statesOfLinks.add(s);
 		lastLinkAdded = s;
@@ -35,13 +37,13 @@ public class State {
 	}
 	
 	public void addRHS(String rhs) {
-		hasChildren = true;
+//		hasChildren = true;
 		rightHandStrings.add(rhs);
 	}
 	
 	public void removeRHS(String rhs) {
 		// look through this again.. not even sure if I'll ever need this
-		hasChildren = false;
+//		hasChildren = false;
 		int index = -1;
 		for (int i = 0; i < rightHandStrings.size(); i++) {
 			if (rightHandStrings.get(i).equals(rhs)) {
@@ -65,7 +67,10 @@ public class State {
 	}
 	
 	public boolean hasChildren() {
-		return hasChildren;
+		if (childrenCount > 0) {
+			return true;
+		} 
+		return false;
 	}
 	
 }
