@@ -12,7 +12,8 @@ import java.util.HashMap;
 public class AutomatonBuilder {
 	
 	private static ArrayList<State> states = new ArrayList<State>();
-	private static HashMap<String, State> registry = new HashMap<>();
+//	private static HashMap<String, State> registry = new HashMap<>();
+	private static HashMap<State, ArrayList<String>> registry = new HashMap<>();
 	private static String word = null;
 	private static int lastState = 0;
 	private static State startState = null;
@@ -199,30 +200,63 @@ public class AutomatonBuilder {
 		int numberOfRHS = childState.rightHandStrings.size();
 //		System.out.println("state: " + childState.nameNumber + " and number of rhs: " + numberOfRHS);
 //		System.out.println("registry size: " + registry.size());
-		for (int i = 0; i < numberOfRHS; i++) {
-			String rhs = childState.rightHandStrings.get(i);
-//			if (!registry.containsKey(rhs) || (registry.containsKey(rhs) && (registry.get(rhs).nameNumber != childState.nameNumber))) {
-			if (!registry.containsKey(rhs)) {
-				System.out.println("queen");
-				contains = false;
-				break;
-			}
-			foundStateNumber = registry.get(rhs).nameNumber;
-		}
-		if (contains) {
-			for (int i = 0; i < numberOfRHS; i++) {
-				if ((registry.get(childState.rightHandStrings.get(i)).nameNumber) != foundStateNumber) {
-					System.out.println("queen2");
-					contains = false;
+		int size = registry.size();
+		State foundState = null;
+		ArrayList<String> registryValues = new ArrayList<String>();
+		for (int i = 0; i < size; i++) {
+			contains = true;
+			registryValues = registry.get(i);
+			int regValSize = registryValues.size();
+			if (regValSize == childState.rightHandStrings.size()) {
+				for (int j = 0; j < regValSize; j++) {
+					if (!registryValues.contains(childState.rightHandStrings.get(j))) {
+						contains = false;
+					}
+				}
+				if (contains = true) {
+//					foundState = registry.get(i);
 					break;
 				}
+			} else {
+				contains = false;
 			}
 		}
+		
+//		ArrayList<State> candidates = new ArrayList<State>();
+//		
+//		
+//		for (int i = 0; i < numberOfRHS; i++) {
+//			
+//			
+//			String rhs = childState.rightHandStrings.get(i);
+////			if (!registry.containsKey(rhs) || (registry.containsKey(rhs) && (registry.get(rhs).nameNumber != childState.nameNumber))) {
+//			if (!registry.containsKey(rhs)) {
+//				System.out.println("queen");
+//				contains = false;
+//				break;
+//			}
+//			int size = registry.size();
+//			for (int j = 0; j < size; j++) {
+//				if (registry.get(j).contains(rhs)) {
+//					
+//				}
+//			}
+//			foundStateNumber = registry.get(rhs).nameNumber;
+//		}
+//		if (contains) {
+//			for (int i = 0; i < numberOfRHS; i++) {
+//				if ((registry.get(childState.rightHandStrings.get(i)).nameNumber) != foundStateNumber) {
+//					System.out.println("queen2");
+//					contains = false;
+//					break;
+//				}
+//			}
+//		}
 //		if (registry.containsValue(childState)) {
 		
 		if (contains && (registry.size() != 0)) {
 			
-			int size = childState.rightHandStrings.size();
+			size = childState.rightHandStrings.size();
 			System.out.println("WENT INTO CONTAINS: " + size + " ........ " + childState.nameNumber);
 			if (size == 0) {
 				System.out.println("in here");
@@ -249,11 +283,18 @@ public class AutomatonBuilder {
 			int size = childState.rightHandStrings.size();
 			if (size == 0) {
 				System.out.println("putting the following in the registry1: " + childState.nameNumber);
-				registry.put(" ", childState);
+				ArrayList<String> arr = new ArrayList<>();
+				arr.add(" ");
+				registry.put(childState, arr);
+//				registry.put(" ", childState);
 			} else {
 				for (int i = 0; i < size; i++) {
 					System.out.println("putting the following in the registry2: " + childState.nameNumber + " : " + childState.rightHandStrings.get(i));
-					registry.put(childState.rightHandStrings.get(i), childState);
+					ArrayList<String> arr = new ArrayList<>();
+					arr.add(childState.rightHandStrings.get(i));
+					registry.put(childState, arr);
+					
+//					registry.put(childState.rightHandStrings.get(i), childState);
 				}
 			}
 		}
