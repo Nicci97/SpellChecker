@@ -31,7 +31,7 @@ public class AutomatonBuilder {
 	}
 	
 	public static void doDFS() {
-		System.out.println("entering DFS staring at node: " + startState.nameNumber);
+//		System.out.println("entering DFS staring at node: " + startState.nameNumber);
 		ArrayList<String> results = new ArrayList<>();
 		ArrayList<String> results2 = new ArrayList<>();
 		int size = startState.statesOfLinks.size();
@@ -44,11 +44,11 @@ public class AutomatonBuilder {
 		for (int i = 0; i < results.size(); i++) {
 			debug2(results.get(i));
 		}
-		System.out.println("exiting DFS staring at node: " + startState.nameNumber);
+//		System.out.println("exiting DFS staring at node: " + startState.nameNumber);
 	}
 	
 	public static ArrayList<String> doDFSnextStep(State state) {
-		System.out.println("entering DFS next step at node: " + state.nameNumber);
+//		System.out.println("entering DFS next step at node: " + state.nameNumber);
 		ArrayList<String> results = new ArrayList<>();
 		ArrayList<String> results2 = new ArrayList<>();
 		ArrayList<String> results3 = new ArrayList<>();
@@ -68,15 +68,15 @@ public class AutomatonBuilder {
 			}
 //		}
 		if (state.acceptState == true) {
-			System.out.println("Accept state: " + state.nameNumber);
+//			System.out.println("Accept state: " + state.nameNumber);
 			results.add("");
 		}
-		System.out.println("exiting DFS next step at node: " + state.nameNumber);
+//		System.out.println("exiting DFS next step at node: " + state.nameNumber);
 		return results;
 	}
 	
 	public static String nextStep(State nextState, int wordIndex, int wordLength) {
-		debug("entering nextStep");
+//		debug("entering nextStep");
 		String commonPrefixSegment = "";
 		int size = nextState.links.size();
 		boolean foundNewState = false;
@@ -109,12 +109,12 @@ public class AutomatonBuilder {
 				}
 			}
 		}
-		debug("exiting nextStep");
+//		debug("exiting nextStep");
 		return commonPrefixSegment;
 	}
 	
 	public static String findCommonPrefix() {
-		debug("entering findCommonPrefix");
+//		debug("entering findCommonPrefix");
 		String commonPrefix = "";
 		
 		int wordLength = word.length();
@@ -143,52 +143,84 @@ public class AutomatonBuilder {
 		}
 		
 		// update last state in here
-		debug("exiting findCommonPrefix");
+//		debug("exiting findCommonPrefix");
 		return commonPrefix;
 	}
 	
-	/**
-	 * Will return an integer bigger than 1 if s1 is "bigger" than s2
-	 */
-	public static int compareStrings(String s1, String s2) {
-		debug("entering compareStrings");
-	    int comparison = 0;
-	    int c1, c2;
-	    for(int i = 0; i < s1.length() && i < s2.length(); i++) {
-	        c1 = (int) s1.toLowerCase().charAt(i);   // See note 1
-	        c2 = (int) s2.toLowerCase().charAt(i);   // See note 1
-	        comparison = c1 - c2;   // See note 2
-
-	        if(comparison != 0) {    // See note 3
-	        	debug("exiting compareStrings");
-	            return comparison;
-	        }
-	    }
-	    if(s1.length() > s2.length()) {   // See note 4
-	    	debug("exiting compareStrings");
-	        return 1;
-	    } else if (s1.length() < s2.length()) {
-	    	debug("exiting compareStrings");
-	        return -1;
-	    } else {
-	    	debug("exiting compareStrings");
-	        return 0;
-	    }
-	}
+//	/**
+//	 * Will return an integer bigger than 1 if s1 is "bigger" than s2
+//	 */
+//	public static int compareStrings(String s1, String s2) {
+////		debug("entering compareStrings");
+//	    int comparison = 0;
+//	    int c1, c2;
+//	    for(int i = 0; i < s1.length() && i < s2.length(); i++) {
+//	        c1 = (int) s1.toLowerCase().charAt(i);   // See note 1
+//	        c2 = (int) s2.toLowerCase().charAt(i);   // See note 1
+//	        comparison = c1 - c2;   // See note 2
+//
+//	        if(comparison != 0) {    // See note 3
+////	        	debug("exiting compareStrings");
+//	            return comparison;
+//	        }
+//	    }
+//	    if(s1.length() > s2.length()) {   // See note 4
+////	    	debug("exiting compareStrings");
+//	        return 1;
+//	    } else if (s1.length() < s2.length()) {
+////	    	debug("exiting compareStrings");
+//	        return -1;
+//	    } else {
+////	    	debug("exiting compareStrings");
+//	        return 0;
+//	    }
+//	}
+	
+	// This method compares two strings 
+    // lexicographically without using 
+    // library functions 
+    public static int stringCompare(String str1, String str2) 
+    { 
+  
+        int l1 = str1.length(); 
+        int l2 = str2.length(); 
+        int lmin = Math.min(l1, l2); 
+  
+        for (int i = 0; i < lmin; i++) { 
+            int str1_ch = (int)str1.charAt(i); 
+            int str2_ch = (int)str2.charAt(i); 
+  
+            if (str1_ch != str2_ch) { 
+                return str1_ch - str2_ch; 
+            } 
+        } 
+  
+        // Edge case for strings like 
+        // String 1="Geeks" and String 2="Geeksforgeeks" 
+        if (l1 != l2) { 
+            return l1 - l2; 
+        } 
+  
+        // If none of the above conditions is true, 
+        // it implies both the strings are equal 
+        else { 
+            return 0; 
+        } 
+    } 
 	
 	public static State replaceOrRegister(State state) {
-		debug("entering replaceOrRegister");
+//		debug("entering replaceOrRegister");
 		State childState = state.lastLinkAdded;
-		System.out.println("at LEAST IN HERE");
+//		System.out.println("at LEAST IN HERE");
 		if (childState.hasChildren()) {
 			State mergeState = replaceOrRegister(childState);
-			System.out.println("bru");
+//			System.out.println("bru");
 			if (mergeState != null) {
 				State parentState = childState;
 				State newChildSTate = childState.lastLinkAdded;
-				System.out.println("bruuuu");
-				System.out.println("removing node:::: " + newChildSTate.nameNumber + " and linking state: " + parentState.nameNumber + " "
-						+ "with state: " + mergeState.nameNumber + " with link " + parentState.charOfLastLinkAdded);
+//				System.out.println("bruuuu");
+//				System.out.println("removing node:::: " + newChildSTate.nameNumber + " and linking state: " + parentState.nameNumber + " "
+//						+ "with state: " + mergeState.nameNumber + " with link " + parentState.charOfLastLinkAdded);
 				Character charOfLastLinkAdded = parentState.charOfLastLinkAdded;
 //				System.out.println("removing state " + newChildSTate.nameNumber);
 //				int index = states.
@@ -227,62 +259,14 @@ public class AutomatonBuilder {
 			} else {
 				contains = false;
 			}
-//			contains = true;
-//			registryValues = registry.get(i).rightHandStrings;
-//			int regValSize = registryValues.size();
-//			if (regValSize == childState.rightHandStrings.size()) {
-//				for (int j = 0; j < regValSize; j++) {
-//					if (!registryValues.contains(childState.rightHandStrings.get(j))) {
-//						contains = false;
-//					}
-//				}
-//				if (contains = true) {
-////					foundState = registry.get(i);
-//					break;
-//				}
-//			} else {
-//				contains = false;
-//			}
 		}
-		
-//		ArrayList<State> candidates = new ArrayList<State>();
-//		
-//		
-//		for (int i = 0; i < numberOfRHS; i++) {
-//			
-//			
-//			String rhs = childState.rightHandStrings.get(i);
-////			if (!registry.containsKey(rhs) || (registry.containsKey(rhs) && (registry.get(rhs).nameNumber != childState.nameNumber))) {
-//			if (!registry.containsKey(rhs)) {
-//				System.out.println("queen");
-//				contains = false;
-//				break;
-//			}
-//			int size = registry.size();
-//			for (int j = 0; j < size; j++) {
-//				if (registry.get(j).contains(rhs)) {
-//					
-//				}
-//			}
-//			foundStateNumber = registry.get(rhs).nameNumber;
-//		}
-//		if (contains) {
-//			for (int i = 0; i < numberOfRHS; i++) {
-//				if ((registry.get(childState.rightHandStrings.get(i)).nameNumber) != foundStateNumber) {
-//					System.out.println("queen2");
-//					contains = false;
-//					break;
-//				}
-//			}
-//		}
-//		if (registry.containsValue(childState)) {
 		
 		if (contains && (registry2.size() != 0)) {
 			
 			int size = childState.rightHandStrings.size();
-			System.out.println("WENT INTO CONTAINS: " + size + " ........ " + childState.nameNumber);
+//			System.out.println("WENT INTO CONTAINS: " + size + " ........ " + childState.nameNumber);
 			if (size == 0) {
-				System.out.println("in here");
+//				System.out.println("in here");
 				int regSize = registry2.size();
 				for (int k = 0; k < regSize; k++) {
 					ArrayList<String> rightHandStrs = registry2.get(k).rightHandStrings;
@@ -307,11 +291,14 @@ public class AutomatonBuilder {
 				for (int i = 1; i < size; i++) {
 					String rhsOne = childState.rightHandStrings.get(i-1);
 					String rhsTwo = childState.rightHandStrings.get(i);
-					if (compareStrings(rhsOne, rhsTwo) > 1) {
+					int result = stringCompare(rhsOne, rhsTwo);
+					if (result > 0) {
 						highest = rhsOne;
-					} else if (compareStrings(rhsTwo, rhsOne) > 1) {
+					} else if (result < 0) {
 						highest = rhsTwo;
 					} else {
+						System.out.println(result);
+						System.out.println("rhsOne: " + rhsOne + " rhsTwo: " + rhsTwo);
 						System.out.println("error - might have duplicate right hand sides stored");
 					}
 				}
@@ -328,7 +315,7 @@ public class AutomatonBuilder {
 //				mergeState = registry.get(highest);
 			}
 		} else {
-			System.out.println("putting the following in the registry}}}: " + childState.nameNumber);
+//			System.out.println("putting the following in the registry}}}: " + childState.nameNumber);
 			registry2.add(childState);
 //			int size = childState.rightHandStrings.size();
 //			if (size == 0) {
@@ -351,22 +338,22 @@ public class AutomatonBuilder {
 //				}
 //			}
 		}
-		debug("exiting replaceOrRegister");
+//		debug("exiting replaceOrRegister");
 		return mergeState;
 	}
 	
 	public static String addSuffixNextStep(State s, int index, int suffixlength, String currentSuffix) {
-		debug("entering addSuffixNextStep");
+//		debug("entering addSuffixNextStep");
 		State newState;
 		String rhs = "";
 		if (index == (suffixlength-1)) {
-			System.out.println("Creating new state1: " + newStateCount + " suffex for prev node: " + currentSuffix.charAt(index));
-			System.out.println("ADDING FINAL STATE: " + newStateCount);
+//			System.out.println("Creating new state1: " + newStateCount + " suffex for prev node: " + currentSuffix.charAt(index));
+//			System.out.println("ADDING FINAL STATE: " + newStateCount);
 			newState = new State(newStateCount++, true);
 			states.add(newState);
 			s.addLink(newState, currentSuffix.charAt(index));
 			rhs = currentSuffix.charAt(index) + "";
-			System.out.println("*********adding this to rhs of this: " + rhs + " : " + s.nameNumber);
+//			System.out.println("*********adding this to rhs of this: " + rhs + " : " + s.nameNumber);
 			s.rightHandStrings.add(rhs);
 			return currentSuffix.substring(index, index) + rhs;
 		} else {
@@ -376,11 +363,11 @@ public class AutomatonBuilder {
 			states.add(newState);
 			s.addLink(newState, currentSuffix.charAt(index));
 			rhs = addSuffixNextStep(newState, index+1, suffixlength, currentSuffix);
-			System.out.println("Creating new state2: " + temp + " suffex for prev node: " + currentSuffix.charAt(index) + rhs);
-			System.out.println("*********adding this to rhs of this2: " + currentSuffix.charAt(index) + rhs + " : " + s.nameNumber);
+//			System.out.println("Creating new state2: " + temp + " suffex for prev node: " + currentSuffix.charAt(index) + rhs);
+//			System.out.println("*********adding this to rhs of this2: " + currentSuffix.charAt(index) + rhs + " : " + s.nameNumber);
 			s.rightHandStrings.add(currentSuffix.charAt(index) + rhs);
 		}
-		debug("exiting addSuffixNextStep");
+//		debug("exiting addSuffixNextStep");
 		return currentSuffix.substring(index, index+1) + rhs;
 //		String rhs;
 //		if (index != suffixlength) {
@@ -393,35 +380,35 @@ public class AutomatonBuilder {
 	}
 	
 	public static void addSuffix(String currentSuffix) {
-		debug("entering addSuffixNextStep");
+//		debug("entering addSuffixNextStep");
 		int suffixLength = currentSuffix.length();
 		if (suffixLength != 0) {
 			State newState;
 			if (suffixLength == 1) {
-				System.out.println("ADDING FINAL STATE: " + newStateCount);
+//				System.out.println("ADDING FINAL STATE: " + newStateCount);
 				newState = new State(newStateCount++, true);
 				states.add(newState);
 				State lastStateState = states.get(lastState);
 //				System.out.println("adding linkPPP: " + currentSuffix.charAt(0));
 //				String rhs = addSuffixNextStep(newState, 1, suffixLength, currentSuffix);
-				System.out.println("Adding stateeee: " + (newStateCount-1) + " to state " + lastStateState.nameNumber);
+//				System.out.println("Adding stateeee: " + (newStateCount-1) + " to state " + lastStateState.nameNumber);
 				// following two lines might need to be taken out
 				String rhs = currentSuffix.charAt(0) + "";
-				System.out.println("*********adding this to rhs of this3: " + rhs + " : " + lastStateState.nameNumber);
+//				System.out.println("*********adding this to rhs of this3: " + rhs + " : " + lastStateState.nameNumber);
 				lastStateState.rightHandStrings.add(rhs);
 				lastStateState.addLink(newState, currentSuffix.charAt(0));
 			} else {
 				newState = new State(newStateCount++, false);
 				states.add(newState);
 				State lastStateState = states.get(lastState);
-				System.out.println("Adding stateeee2: " + (newStateCount-1) + "current suffix to add: " + currentSuffix.charAt(0));
+//				System.out.println("Adding stateeee2: " + (newStateCount-1) + "current suffix to add: " + currentSuffix.charAt(0));
 				lastStateState.addLink(newState, currentSuffix.charAt(0));
 				String rhs = addSuffixNextStep(newState, 1, suffixLength, currentSuffix);
-				System.out.println("*********adding this to rhs of this4: " + currentSuffix.charAt(0) + rhs + " : " + lastStateState.nameNumber);
+//				System.out.println("*********adding this to rhs of this4: " + currentSuffix.charAt(0) + rhs + " : " + lastStateState.nameNumber);
 				lastStateState.rightHandStrings.add(currentSuffix.charAt(0) + rhs);
 			}	
 		}
-		debug("exiting addSuffixNextStep");
+//		debug("exiting addSuffixNextStep");
 	}
 	
 	public static void main(String[] args) throws IOException {
@@ -429,7 +416,7 @@ public class AutomatonBuilder {
 		String currentSuffix = null;
 		
 		//Create the start state
-		System.out.println("ADDING FINAL STATE: " + 0);
+//		System.out.println("ADDING FINAL STATE: " + 0);
 		startState = new State(0, true);
 		states.add(startState);
 		
@@ -442,30 +429,30 @@ public class AutomatonBuilder {
 			commonPrefix = findCommonPrefix();
 			currentSuffix = word.substring(commonPrefix.length(), word.length());
 			
-			System.out.println(" word: " + word);
-			System.out.println(" common Prefix: " + commonPrefix);
-			System.out.println(" currentSuffix: " + currentSuffix);
-			System.out.println(" last state: " + lastState);
-			System.out.println("-------------");
+//			System.out.println(" word: " + word);
+//			System.out.println(" common Prefix: " + commonPrefix);
+//			System.out.println(" currentSuffix: " + currentSuffix);
+//			System.out.println(" last state: " + lastState);
+//			System.out.println("-------------");
 			
 			if (states.get(lastState).hasChildren()) {
 				State lastStateState = states.get(lastState);
 				State mergeState = replaceOrRegister(states.get(lastState));
 				State childState = lastStateState.lastLinkAdded;
-				System.out.println(lastStateState.nameNumber + " chlid " + childState.nameNumber);
+//				System.out.println(lastStateState.nameNumber + " chlid " + childState.nameNumber);
 				
 				if (mergeState != null) {
-					System.out.println("removing node...: " + childState.nameNumber + " and linking state: " + lastStateState.nameNumber + " "
-							+ "with state: " + mergeState.nameNumber + " with link " + lastStateState.charOfLastLinkAdded);
+//					System.out.println("removing node...: " + childState.nameNumber + " and linking state: " + lastStateState.nameNumber + " "
+//							+ "with state: " + mergeState.nameNumber + " with link " + lastStateState.charOfLastLinkAdded);
 					Character charOfLastLinkAdded = lastStateState.charOfLastLinkAdded;
-					System.out.println("removing state " + childState.nameNumber);
+//					System.out.println("removing state " + childState.nameNumber);
 //					states.remove(childState.nameNumber);//Nicole
 					states.set(childState.nameNumber, null);
 					lastStateState.removeLink(childState, lastStateState.charOfLastLinkAdded);
 					lastStateState.addLink(mergeState, charOfLastLinkAdded);
 					childState = null;
 				}
-				System.out.println("HERE");
+//				System.out.println("HERE");
 			}
 			addSuffix(currentSuffix);
 			
