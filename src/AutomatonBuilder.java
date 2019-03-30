@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AutomatonBuilder {
 	
@@ -15,7 +14,7 @@ public class AutomatonBuilder {
 //	private static HashMap<String, State> registry = new HashMap<>();
 //	private static HashMap<State, ArrayList<String>> registry = new HashMap<>();
 //	private static HashMap<Integer, State> registry = new HashMap<>();
-	private static ArrayList<State> registry = new ArrayList<>();
+	private static ArrayList<State> registry2 = new ArrayList<>();
 	private static String word = null;
 	private static int lastState = 0;
 	private static State startState = null;
@@ -32,6 +31,7 @@ public class AutomatonBuilder {
 	}
 	
 	public static void doDFS() {
+		System.out.println("entering DFS staring at node: " + startState.nameNumber);
 		ArrayList<String> results = new ArrayList<>();
 		ArrayList<String> results2 = new ArrayList<>();
 		int size = startState.statesOfLinks.size();
@@ -44,31 +44,35 @@ public class AutomatonBuilder {
 		for (int i = 0; i < results.size(); i++) {
 			debug2(results.get(i));
 		}
+		System.out.println("exiting DFS staring at node: " + startState.nameNumber);
 	}
 	
 	public static ArrayList<String> doDFSnextStep(State state) {
+		System.out.println("entering DFS next step at node: " + state.nameNumber);
 		ArrayList<String> results = new ArrayList<>();
 		ArrayList<String> results2 = new ArrayList<>();
 		ArrayList<String> results3 = new ArrayList<>();
 		int size = state.statesOfLinks.size();
 		
-		if (size == 0) {
-			results2.add("");
-		} else {
+//		if (size == 0) {
+//			results.add("");
+//		} else {
 			for (int i = 0; i < size; i++) {
 				results3 = doDFSnextStep(state.statesOfLinks.get(i));
 				for (int j = 0; j < results3.size(); j++) {
-					results.add(results3.get(j));
+					results.add(state.links.get(i) + results3.get(j));
 				}
-				for (int j = 0; j < results.size(); j++) {
-					results2.add(state.links.get(i) + results.get(j));
-				}
+//				for (int j = 0; j < results.size(); j++) {
+//					results2.add(state.links.get(i) + results.get(j));
+//				}
 			}
-		}
+//		}
 		if (state.acceptState == true) {
-			results2.add("");
+			System.out.println("Accept state: " + state.nameNumber);
+			results.add("");
 		}
-		return results2;
+		System.out.println("exiting DFS next step at node: " + state.nameNumber);
+		return results;
 	}
 	
 	public static String nextStep(State nextState, int wordIndex, int wordLength) {
@@ -197,31 +201,48 @@ public class AutomatonBuilder {
 		}
 		
 		State mergeState = null;
-		boolean contains = true;
+//		boolean contains = true;
 		int foundStateNumber = -1;
 		int numberOfRHS = childState.rightHandStrings.size();
 //		System.out.println("state: " + childState.nameNumber + " and number of rhs: " + numberOfRHS);
 //		System.out.println("registry size: " + registry.size());
-		int size = registry.size();
+		int reigstrySize = registry2.size();
 		State foundState = null;
 		ArrayList<String> registryValues = new ArrayList<String>();
-		for (int i = 0; i < size; i++) {
-			contains = true;
-			registryValues = registry.get(i).rightHandStrings;
+		// for each node in the registry
+		boolean contains = false;
+		for (int i = 0; i < reigstrySize; i++) {
+			registryValues = registry2.get(i).rightHandStrings;
 			int regValSize = registryValues.size();
 			if (regValSize == childState.rightHandStrings.size()) {
+				contains = true;
 				for (int j = 0; j < regValSize; j++) {
 					if (!registryValues.contains(childState.rightHandStrings.get(j))) {
 						contains = false;
 					}
 				}
-				if (contains = true) {
-//					foundState = registry.get(i);
+				if (contains == true) {
 					break;
 				}
 			} else {
 				contains = false;
 			}
+//			contains = true;
+//			registryValues = registry.get(i).rightHandStrings;
+//			int regValSize = registryValues.size();
+//			if (regValSize == childState.rightHandStrings.size()) {
+//				for (int j = 0; j < regValSize; j++) {
+//					if (!registryValues.contains(childState.rightHandStrings.get(j))) {
+//						contains = false;
+//					}
+//				}
+//				if (contains = true) {
+////					foundState = registry.get(i);
+//					break;
+//				}
+//			} else {
+//				contains = false;
+//			}
 		}
 		
 //		ArrayList<State> candidates = new ArrayList<State>();
@@ -256,27 +277,27 @@ public class AutomatonBuilder {
 //		}
 //		if (registry.containsValue(childState)) {
 		
-		if (contains && (registry.size() != 0)) {
+		if (contains && (registry2.size() != 0)) {
 			
-			size = childState.rightHandStrings.size();
+			int size = childState.rightHandStrings.size();
 			System.out.println("WENT INTO CONTAINS: " + size + " ........ " + childState.nameNumber);
 			if (size == 0) {
 				System.out.println("in here");
-				int regSize = registry.size();
+				int regSize = registry2.size();
 				for (int k = 0; k < regSize; k++) {
-					ArrayList<String> rightHandStrs = registry.get(k).rightHandStrings;
+					ArrayList<String> rightHandStrs = registry2.get(k).rightHandStrings;
 					if (rightHandStrs.size() == 0) {
-						mergeState = registry.get(k);
+						mergeState = registry2.get(k);
 					}
 				}
 				// do merge
 			} else if (size == 1) {
-				int regSize = registry.size();
+				int regSize = registry2.size();
 				for (int k = 0; k < regSize; k++) {
-					ArrayList<String> rightHandStrs = registry.get(k).rightHandStrings;
+					ArrayList<String> rightHandStrs = registry2.get(k).rightHandStrings;
 					if (rightHandStrs.size() == 1) {
 						if (rightHandStrs.contains(childState.rightHandStrings.get(0))) {
-							mergeState = registry.get(k);
+							mergeState = registry2.get(k);
 						}
 					}
 				}
@@ -295,38 +316,40 @@ public class AutomatonBuilder {
 					}
 				}
 				
-				int regSize = registry.size();
+				int regSize = registry2.size();
 				for (int k = 0; k < regSize; k++) {
-					ArrayList<String> rightHandStrs = registry.get(k).rightHandStrings;
+					ArrayList<String> rightHandStrs = registry2.get(k).rightHandStrings;
 					if (rightHandStrs.size() == size) {
 						if (rightHandStrs.contains(highest)) {
-							mergeState = registry.get(k);
+							mergeState = registry2.get(k);
 						}
 					}
 				}
 //				mergeState = registry.get(highest);
 			}
 		} else {
-			size = childState.rightHandStrings.size();
-			if (size == 0) {
-				System.out.println("putting the following in the registry1: " + childState.nameNumber);
-//				ArrayList<String> arr = new ArrayList<>();
-//				arr.add(" ");
-				registry.add(childState);
-//				registry.put(childState.nameNumber, childState);
-//				registry.put(childState, arr);
-//				registry.put(" ", childState);
-			} else {
-				for (int i = 0; i < size; i++) {
-					System.out.println("putting the following in the registry2: " + childState.nameNumber + " : " + childState.rightHandStrings.get(i));
-//					ArrayList<String> arr = new ArrayList<>();
-//					arr.add(childState.rightHandStrings.get(i));
-//					registry.put(childState, arr);
-					registry.add(childState);
-//					registry.put(childState.nameNumber, childState);
-//					registry.put(childState.rightHandStrings.get(i), childState);
-				}
-			}
+			System.out.println("putting the following in the registry}}}: " + childState.nameNumber);
+			registry2.add(childState);
+//			int size = childState.rightHandStrings.size();
+//			if (size == 0) {
+//				System.out.println("putting the following in the registry1: " + childState.nameNumber);
+////				ArrayList<String> arr = new ArrayList<>();
+////				arr.add(" ");
+//				registry2.add(childState);
+////				registry.put(childState.nameNumber, childState);
+////				registry.put(childState, arr);
+////				registry.put(" ", childState);
+//			} else {
+//				for (int i = 0; i < size; i++) {
+//					System.out.println("putting the following in the registry2: " + childState.nameNumber + " : " + childState.rightHandStrings.get(i));
+////					ArrayList<String> arr = new ArrayList<>();
+////					arr.add(childState.rightHandStrings.get(i));
+////					registry.put(childState, arr);
+//					registry2.add(childState);
+////					registry.put(childState.nameNumber, childState);
+////					registry.put(childState.rightHandStrings.get(i), childState);
+//				}
+//			}
 		}
 		debug("exiting replaceOrRegister");
 		return mergeState;
@@ -338,6 +361,7 @@ public class AutomatonBuilder {
 		String rhs = "";
 		if (index == (suffixlength-1)) {
 			System.out.println("Creating new state1: " + newStateCount + " suffex for prev node: " + currentSuffix.charAt(index));
+			System.out.println("ADDING FINAL STATE: " + newStateCount);
 			newState = new State(newStateCount++, true);
 			states.add(newState);
 			s.addLink(newState, currentSuffix.charAt(index));
@@ -374,6 +398,7 @@ public class AutomatonBuilder {
 		if (suffixLength != 0) {
 			State newState;
 			if (suffixLength == 1) {
+				System.out.println("ADDING FINAL STATE: " + newStateCount);
 				newState = new State(newStateCount++, true);
 				states.add(newState);
 				State lastStateState = states.get(lastState);
@@ -404,7 +429,8 @@ public class AutomatonBuilder {
 		String currentSuffix = null;
 		
 		//Create the start state
-		startState = new State(0, false);
+		System.out.println("ADDING FINAL STATE: " + 0);
+		startState = new State(0, true);
 		states.add(startState);
 		
 		//set up reader for input of asciibetically sorted dictionary in the format one word per line
