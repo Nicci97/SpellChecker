@@ -13,7 +13,9 @@ public class AutomatonBuilder {
 	
 	private static ArrayList<State> states = new ArrayList<State>();
 //	private static HashMap<String, State> registry = new HashMap<>();
-	private static HashMap<State, ArrayList<String>> registry = new HashMap<>();
+//	private static HashMap<State, ArrayList<String>> registry = new HashMap<>();
+//	private static HashMap<Integer, State> registry = new HashMap<>();
+	private static ArrayList<State> registry = new ArrayList<>();
 	private static String word = null;
 	private static int lastState = 0;
 	private static State startState = null;
@@ -205,7 +207,7 @@ public class AutomatonBuilder {
 		ArrayList<String> registryValues = new ArrayList<String>();
 		for (int i = 0; i < size; i++) {
 			contains = true;
-			registryValues = registry.get(i);
+			registryValues = registry.get(i).rightHandStrings;
 			int regValSize = registryValues.size();
 			if (regValSize == childState.rightHandStrings.size()) {
 				for (int j = 0; j < regValSize; j++) {
@@ -260,10 +262,25 @@ public class AutomatonBuilder {
 			System.out.println("WENT INTO CONTAINS: " + size + " ........ " + childState.nameNumber);
 			if (size == 0) {
 				System.out.println("in here");
-				mergeState = registry.get(" ");
+				int regSize = registry.size();
+				for (int k = 0; k < regSize; k++) {
+					ArrayList<String> rightHandStrs = registry.get(k).rightHandStrings;
+					if (rightHandStrs.size() == 0) {
+						mergeState = registry.get(k);
+					}
+				}
 				// do merge
 			} else if (size == 1) {
-				mergeState = registry.get(childState.rightHandStrings.get(0));
+				int regSize = registry.size();
+				for (int k = 0; k < regSize; k++) {
+					ArrayList<String> rightHandStrs = registry.get(k).rightHandStrings;
+					if (rightHandStrs.size() == 1) {
+						if (rightHandStrs.contains(childState.rightHandStrings.get(0))) {
+							mergeState = registry.get(k);
+						}
+					}
+				}
+//				mergeState = registry.get(childState.rightHandStrings.get(0));
 			} else {
 				String highest = "";
 				for (int i = 1; i < size; i++) {
@@ -277,23 +294,36 @@ public class AutomatonBuilder {
 						System.out.println("error - might have duplicate right hand sides stored");
 					}
 				}
-				mergeState = registry.get(highest);
+				
+				int regSize = registry.size();
+				for (int k = 0; k < regSize; k++) {
+					ArrayList<String> rightHandStrs = registry.get(k).rightHandStrings;
+					if (rightHandStrs.size() == size) {
+						if (rightHandStrs.contains(highest)) {
+							mergeState = registry.get(k);
+						}
+					}
+				}
+//				mergeState = registry.get(highest);
 			}
 		} else {
-			int size = childState.rightHandStrings.size();
+			size = childState.rightHandStrings.size();
 			if (size == 0) {
 				System.out.println("putting the following in the registry1: " + childState.nameNumber);
-				ArrayList<String> arr = new ArrayList<>();
-				arr.add(" ");
-				registry.put(childState, arr);
+//				ArrayList<String> arr = new ArrayList<>();
+//				arr.add(" ");
+				registry.add(childState);
+//				registry.put(childState.nameNumber, childState);
+//				registry.put(childState, arr);
 //				registry.put(" ", childState);
 			} else {
 				for (int i = 0; i < size; i++) {
 					System.out.println("putting the following in the registry2: " + childState.nameNumber + " : " + childState.rightHandStrings.get(i));
-					ArrayList<String> arr = new ArrayList<>();
-					arr.add(childState.rightHandStrings.get(i));
-					registry.put(childState, arr);
-					
+//					ArrayList<String> arr = new ArrayList<>();
+//					arr.add(childState.rightHandStrings.get(i));
+//					registry.put(childState, arr);
+					registry.add(childState);
+//					registry.put(childState.nameNumber, childState);
 //					registry.put(childState.rightHandStrings.get(i), childState);
 				}
 			}
