@@ -40,7 +40,7 @@ public class State {
 //		hasChildren = true;
 		rightHandStrings.add(rhs);
 	}
-	
+
 	public void removeRHS(String rhs) {
 		// look through this again.. not even sure if I'll ever need this
 //		hasChildren = false;
@@ -56,9 +56,9 @@ public class State {
 		} else {
 			rightHandStrings.remove(index);
 		}
-		
+
 	}
-	
+
 	public boolean containsRHS(String rhs) {
 		if (rightHandStrings.contains(rhs)) {
 			return true;
