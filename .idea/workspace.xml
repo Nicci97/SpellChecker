@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8729b154-ce08-47a1-95ba-1363e326987b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/isiXhosa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/isiXhosa.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="387" column="38" selection-start-line="387" selection-start-column="38" selection-end-line="387" selection-end-column="38" />
+            <state relative-caret-position="374">
+              <caret line="509" column="34" selection-start-line="509" selection-start-column="34" selection-end-line="509" selection-end-column="34" />
               <folding>
                 <element signature="e#0#18175#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -47,6 +45,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>remo</find>
+      <find>here</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -61,10 +60,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="25" />
-    <option name="width" value="1853" />
-    <option name="height" value="1055" />
+    <option name="x" value="-123" />
+    <option name="y" value="27" />
+    <option name="width" value="1287" />
+    <option name="height" value="550" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -92,7 +91,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554567931369" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554569429198" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -163,8 +162,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="387" column="38" selection-start-line="387" selection-start-column="38" selection-end-line="387" selection-end-column="38" />
+        <state relative-caret-position="374">
+          <caret line="509" column="34" selection-start-line="509" selection-start-column="34" selection-end-line="509" selection-end-column="34" />
           <folding>
             <element signature="e#0#18175#0" expanded="true" />
             <element signature="imports" expanded="true" />

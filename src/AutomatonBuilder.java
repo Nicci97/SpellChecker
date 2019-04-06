@@ -36,7 +36,7 @@ public class AutomatonBuilder {
         ArrayList<String> results2 = new ArrayList<>();
         int size = startState.statesOfLinks.size();
         for (int i = 0; i < size; i++) {
-            System.out.println(startState.links.get(i));
+//            System.out.println(startState.links.get(i));
             results2 = doDFSnextStep(startState.statesOfLinks.get(i));
             for (int j = 0; j < results2.size(); j++) {
                 results.add(startState.links.get(i) + results2.get(j));
@@ -59,7 +59,7 @@ public class AutomatonBuilder {
 //			results.add("");
 //		} else {
         for (int i = 0; i < size; i++) {
-            System.out.println(state.links.get(i));
+//            System.out.println(state.links.get(i));
             results3 = doDFSnextStep(state.statesOfLinks.get(i));
             for (int j = 0; j < results3.size(); j++) {
                 results.add(state.links.get(i) + results3.get(j));
@@ -275,27 +275,26 @@ public class AutomatonBuilder {
             ArrayList<Character> childOutgoingEdges = childState.links;
             // GET STRING FOR REGISTRY STATE
             if (registryState.acceptState == true) {
-                checkReg.concat("1");
+                checkReg = "1";
             } else {
-                checkReg.concat("0");
+                checkReg = "0";
             }
             int numberOfEdges = registryOutgoingEdges.size();
             for (int j = 0; j < numberOfEdges; j++) {
-                checkReg.concat(registryOutgoingEdges.get(j) + "");
-                checkReg.concat(registryState.statesOfLinks.get(j).nameNumber + "");
+                checkReg = checkReg + registryOutgoingEdges.get(j) + registryState.statesOfLinks.get(j).nameNumber;
             }
             // GET STRING FOR CHILD STATE
             if (childState.acceptState == true) {
-                checkChild.concat("1");
+                checkChild = "1";
             } else {
-                checkChild.concat("0");
+                checkChild = "0";
             }
             numberOfEdges = childOutgoingEdges.size();
             for (int j = 0; j < numberOfEdges; j++) {
-                checkChild.concat(childOutgoingEdges.get(j) + "");
-                checkChild.concat(childState.statesOfLinks.get(j).nameNumber + "");
+                checkChild = checkChild + childOutgoingEdges.get(j) + childState.statesOfLinks.get(j).nameNumber;
             }
             // COMPARE THE TWO STRINGS
+//            System.out.println("strings: " + checkReg + " " + checkChild);
             if (checkReg.equals(checkChild)) {
                 mergeState = registryState;
                 break;
@@ -472,8 +471,7 @@ public class AutomatonBuilder {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         word = br.readLine();
         while (word != null) {
-
-
+            System.out.println(word);
             commonPrefix = findCommonPrefix();
             currentSuffix = word.substring(commonPrefix.length(), word.length());
 
@@ -509,7 +507,7 @@ public class AutomatonBuilder {
             word = br.readLine();
         }
         replaceOrRegister(startState);
-
+        System.out.println("do DFS");
         doDFS();
     }
 
