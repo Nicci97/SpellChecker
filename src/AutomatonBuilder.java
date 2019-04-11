@@ -11,14 +11,13 @@ import java.util.HashMap;
 
 public class AutomatonBuilder {
 
-    private static ArrayList<State> states = new ArrayList<State>();
-    private static ArrayList<State> registry = new ArrayList<>();
-//    private static HashMap<String, State> registry = new HashMap<>();
+    private static HashMap<Integer, State> states = new HashMap<>();
+    private static HashMap<String, State> registry = new HashMap<>();
     private static String word = null;
     private static int lastState = 0;
     private static State startState = null;
     private static int newStateCount = 1;
-    private static String suffexToAdd = "";
+    private static String suffexToAdd;
     private static int countGlobal = 0;
 
     public static void debug(String str) {
@@ -26,40 +25,51 @@ public class AutomatonBuilder {
     }
 
     public static void debug2(String str) {
-//        System.out.println(str);
+        System.out.println(str);
+    }
+
+    public static void debug3(String str) {
+        System.out.println(str);
     }
 
     public static void doDFS() {
-//		System.out.println("entering DFS staring at node: " + startState.nameNumber);
         ArrayList<String> results = new ArrayList<>();
         ArrayList<String> results2 = new ArrayList<>();
-        int size = startState.statesOfLinks.size();
-        for (int i = 0; i < size; i++) {
-//            System.out.println(startState.links.get(i));
-            results2 = doDFSnextStep(startState.statesOfLinks.get(i));
+
+        for (EdgeInfo edgeInfo: startState.getEdges().values()) {
+            results2 = doDFSnextStep(edgeInfo.getEdgeToState());
             for (int j = 0; j < results2.size(); j++) {
-                results.add(startState.links.get(i) + results2.get(j));
+                int numChars = edgeInfo.getEdgeChars().size();
+                for (int k = 0; k < numChars; k++) {
+                    results.add(edgeInfo.getEdgeChars().get(k) + results2.get(j));
+                }
             }
         }
+
         for (int i = 0; i < results.size(); i++) {
             debug2(results.get(i));
         }
-//		System.out.println("exiting DFS staring at node: " + startState.nameNumber);
+        System.out.println("Number of words in the output language: " + results.size());
     }
 
     public static ArrayList<String> doDFSnextStep(State state) {
-        countGlobal++;
+        if (state.visited == false) {
+            countGlobal++;
+            state.visited = true;
+        }
         ArrayList<String> results = new ArrayList<>();
-        ArrayList<String> results2 = new ArrayList<>();
-        ArrayList<String> results3 = new ArrayList<>();
-        int size = state.statesOfLinks.size();
-        for (int i = 0; i < size; i++) {
-            results3 = doDFSnextStep(state.statesOfLinks.get(i));
+        ArrayList<String> results3;
+
+        for (EdgeInfo edgeInfo : state.getEdges().values()) {
+            results3 = doDFSnextStep(edgeInfo.getEdgeToState());
             for (int j = 0; j < results3.size(); j++) {
-                results.add(state.links.get(i) + results3.get(j));
+                int numChars = edgeInfo.getEdgeChars().size();
+                for (int k = 0; k < numChars; k++) {
+                    results.add(edgeInfo.getEdgeChars().get(k) + results3.get(j));
+                }
             }
         }
-        if (state.acceptState == true) {
+        if (state.isAcceptState() == true) {
             results.add("");
         }
         return results;
@@ -68,22 +78,25 @@ public class AutomatonBuilder {
     public static String nextStep(State nextState, int wordIndex, int wordLength) {
         debug("enter nextStep");
         String commonPrefixSegment = "";
-        int size = nextState.links.size();
         boolean foundNewState = false;
         char nextLetter = '\u0000';
-        for (int i = 0; i < size; i++) {
+        for (EdgeInfo edgeInfo : nextState.getEdges().values()) {
             nextLetter = word.charAt(wordIndex);
-            if (nextState.links.get(i).equals(nextLetter)) {
-                if (wordIndex == wordLength) {
-                    foundNewState = true;
-                } else {
-                    commonPrefixSegment = nextLetter + nextStep(nextState.statesOfLinks.get(i), wordIndex+1, wordLength);
-                    foundNewState = true;
+
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(nextLetter)) {
+                    if (wordIndex == wordLength) {
+                        foundNewState = true;
+                    } else {
+                        commonPrefixSegment = nextLetter + nextStep(edgeInfo.getEdgeToState(), wordIndex + 1, wordLength);
+                        foundNewState = true;
+                    }
                 }
             }
         }
         if (!foundNewState) {
-            lastState = nextState.nameNumber;
+            lastState = nextState.getNameNumber();
             if (wordIndex != wordLength) {
                 suffexToAdd = word.substring(wordIndex+1, word.length());
             }
@@ -101,16 +114,19 @@ public class AutomatonBuilder {
             System.out.println("error - empty work.. issue");
         }
 
-        int size = startState.links.size();
         boolean foundNewState = false;
-        for (int i = 0; i < size; i++) {
+        for (EdgeInfo edgeInfo : startState.getEdges().values()) {
             char firstLetter = word.charAt(0);
-            if (startState.links.get(i).equals(firstLetter)) {
-                if (wordLength == 1) {
-                    foundNewState = true;
-                } else {
-                    commonPrefix = firstLetter + nextStep(startState.statesOfLinks.get(i), 1, wordLength);
-                    foundNewState = true;
+
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(firstLetter)) {
+                    if (wordLength == 1) {
+                        foundNewState = true;
+                    } else {
+                        commonPrefix = firstLetter + nextStep(edgeInfo.getEdgeToState(), 1, wordLength);
+                        foundNewState = true;
+                    }
                 }
             }
         }
@@ -160,17 +176,16 @@ public class AutomatonBuilder {
 
     public static State replaceOrRegister(State state) {
         debug("enter replaceOrRegister");
-        State childState = state.lastLinkAdded;
+        State childState = state.getLastLinkAdded();
         if (childState.hasChildren()) {
             State mergeState = replaceOrRegister(childState);
             if (mergeState != null) {
                 State parentState = childState;
-                State newChildSTate = childState.lastLinkAdded;
-                Character charOfLastLinkAdded = parentState.charOfLastLinkAdded;
-                states.set(newChildSTate.nameNumber, null);
-                parentState.removeLink(newChildSTate, parentState.charOfLastLinkAdded);
+                State newChildState = childState.getLastLinkAdded();
+                Character charOfLastLinkAdded = parentState.getCharOfLastLinkAdded();
+                states.remove(childState.getNameNumber());
+                parentState.removeLink(newChildState, parentState.getCharOfLastLinkAdded());
                 parentState.addLink(mergeState, charOfLastLinkAdded);
-                newChildSTate = null;
             }
         }
 
@@ -178,106 +193,46 @@ public class AutomatonBuilder {
 
         String checkReg = "";
         String checkChild = "";
-        int registrySize = registry.size();
-        for (int i = 0; i < registrySize; i++) {
-            State registryState = registry.get(i);
-            ArrayList<Character> registryOutgoingEdges = registryState.links;
-            ArrayList<Character> childOutgoingEdges = childState.links;
-            // GET STRING FOR REGISTRY STATE
-            if (registryState.acceptState == true) {
-                checkReg = "1";
-            } else {
-                checkReg = "0";
-            }
-            int numberOfEdges = registryOutgoingEdges.size();
-            for (int j = 0; j < numberOfEdges; j++) {
-                checkReg = checkReg + registryOutgoingEdges.get(j) + registryState.statesOfLinks.get(j).nameNumber;
-            }
+            HashMap<Integer, EdgeInfo> childOutgoingEdges = childState.getEdges();
             // GET STRING FOR CHILD STATE
-            if (childState.acceptState == true) {
+            if (childState.isAcceptState() == true) {
                 checkChild = "1";
             } else {
                 checkChild = "0";
             }
-            numberOfEdges = childOutgoingEdges.size();
-            for (int j = 0; j < numberOfEdges; j++) {
-                checkChild = checkChild + childOutgoingEdges.get(j) + childState.statesOfLinks.get(j).nameNumber;
+
+            for (EdgeInfo edgeInfo : childOutgoingEdges.values()) {
+                int numEdges = edgeInfo.getEdgeChars().size();
+                for (int k = 0; k < numEdges; k++) {
+                    checkChild = checkChild + edgeInfo.getEdgeChars().get(k) + edgeInfo.getEdgeToState().getNameNumber();
+                }
             }
-            // COMPARE THE TWO STRINGS
-            if (checkReg.equals(checkChild)) {
-                mergeState = registryState;
-                break;
-            }
-        }
+
+            mergeState = registry.get(checkChild);
+
         if (mergeState == null) {
-            registry.add(childState);
+            registry.put(checkChild, childState);
         }
-
-//        String checkReg = "";
-//        String checkChild = "";
-////        int registrySize = registry.size();
-////        for (int i = 0; i < registrySize; i++) {
-////            State registryState = registry.get(i);
-////            ArrayList<Character> registryOutgoingEdges = registryState.links;
-//            ArrayList<Character> childOutgoingEdges = childState.links;
-////            // GET STRING FOR REGISTRY STATE
-////            if (registryState.acceptState == true) {
-////                checkReg = "1";
-////            } else {
-////                checkReg = "0";
-////            }
-////            int numberOfEdges = registryOutgoingEdges.size();
-////            for (int j = 0; j < numberOfEdges; j++) {
-////                checkReg = checkReg + registryOutgoingEdges.get(j) + registryState.statesOfLinks.get(j).nameNumber;
-////            }
-//            // GET STRING FOR CHILD STATE
-//            if (childState.acceptState == true) {
-//                checkChild = "1";
-//            } else {
-//                checkChild = "0";
-//            }
-//            int numberOfEdges = childOutgoingEdges.size();
-//            for (int j = 0; j < numberOfEdges; j++) {
-//                checkChild = checkChild + childOutgoingEdges.get(j) + childState.statesOfLinks.get(j).nameNumber;
-//            }
-//
-//            mergeState = registry.get(checkChild);
-//            // COMPARE THE TWO STRINGS
-////            if (checkReg.equals(checkChild)) {
-////                mergeState = registryState;
-////                break;
-////            }
-////        }
-//        if (mergeState == null) {
-//            registry.put(checkChild, childState);
-////            registry.add(checkChild, childState);
-//        }
-
 
         debug("exit replaceOrRegister");
         return mergeState;
     }
 
-    public static String addSuffixNextStep(State s, int index, int suffixlength, String currentSuffix) {
+    public static void addSuffixNextStep(State s, int index, int suffixlength, String currentSuffix) {
         debug("enter addSuffixNextStep");
         State newState;
-        String rhs = "";
         if (index == (suffixlength-1)) {
             newState = new State(newStateCount++, true);
-            states.add(newState);
+            states.put(newState.getNameNumber(), newState);
             s.addLink(newState, currentSuffix.charAt(index));
-            rhs = currentSuffix.charAt(index) + "";
             debug("exit addSuffixNextStep");
-            return currentSuffix.substring(index, index) + rhs;
         } else {
-            int temp = newStateCount;
             newState = new State(newStateCount++, false);
-            states.add(newState);
+            states.put(newState.getNameNumber(), newState);
             s.addLink(newState, currentSuffix.charAt(index));
-            rhs = addSuffixNextStep(newState, index+1, suffixlength, currentSuffix);
+            addSuffixNextStep(newState, index+1, suffixlength, currentSuffix);
         }
         debug("exit addSuffixNextStep");
-        return currentSuffix.substring(index, index+1) + rhs;
     }
 
     public static void addSuffix(String currentSuffix) {
@@ -287,17 +242,15 @@ public class AutomatonBuilder {
             State newState;
             if (suffixLength == 1) {
                 newState = new State(newStateCount++, true);
-                states.add(newState);
+                states.put(newState.getNameNumber(), newState);
                 State lastStateState = states.get(lastState);
-                // following two lines might need to be taken out
-                String rhs = currentSuffix.charAt(0) + "";
                 lastStateState.addLink(newState, currentSuffix.charAt(0));
             } else {
                 newState = new State(newStateCount++, false);
-                states.add(newState);
+                states.put(newState.getNameNumber(), newState);
                 State lastStateState = states.get(lastState);
                 lastStateState.addLink(newState, currentSuffix.charAt(0));
-                String rhs = addSuffixNextStep(newState, 1, suffixLength, currentSuffix);
+                addSuffixNextStep(newState, 1, suffixLength, currentSuffix);
             }
         }
         debug("exit addSuffix");
@@ -305,43 +258,41 @@ public class AutomatonBuilder {
 
     public static void main(String[] args) throws IOException {
         debug("enter main");
-        String commonPrefix = null;
-        String currentSuffix = null;
+        String commonPrefix;
+        String currentSuffix;
 
         //Create the start state
-//		System.out.println("ADDING FINAL STATE: " + 0);
         startState = new State(0, true);
-        states.add(startState);
+        states.put(startState.getNameNumber(), startState);
 
         //set up reader for input of asciibetically sorted dictionary in the format one word per line
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         word = br.readLine();
+        int count = 0;
         while (word != null) {
+            count++;
             commonPrefix = findCommonPrefix();
-            currentSuffix = word.substring(commonPrefix.length(), word.length());
+            currentSuffix = word.substring(commonPrefix.length());
             if (states.get(lastState).hasChildren()) {
                 State lastStateState = states.get(lastState);
                 State mergeState = replaceOrRegister(states.get(lastState));
-                State childState = lastStateState.lastLinkAdded;
-
+                State childState = lastStateState.getLastLinkAdded();
                 if (mergeState != null) {
-                    Character charOfLastLinkAdded = lastStateState.charOfLastLinkAdded;
-                    states.set(childState.nameNumber, null);
-                    lastStateState.removeLink(childState, lastStateState.charOfLastLinkAdded);
+                    Character charOfLastLinkAdded = lastStateState.getCharOfLastLinkAdded();
+                    states.remove(childState.getNameNumber());
+                    lastStateState.removeLink(childState, lastStateState.getCharOfLastLinkAdded());
                     lastStateState.addLink(mergeState, charOfLastLinkAdded);
-                    childState = null;
                 }
             }
             addSuffix(currentSuffix);
-
             word = br.readLine();
         }
         replaceOrRegister(startState);
         debug("exit main");
 
-//        System.out.println("do DFS");
         doDFS();
-        System.out.println("count: " + countGlobal);
+        System.out.println("Number of words in the input language: " + count);
+        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
     }
 
 }
