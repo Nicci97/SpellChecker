@@ -2,8 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a85da17-e450-43e4-adfd-852d2cb23569" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpellChecker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpellChecker.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/MinimalDFASortedInput.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/MinimalDFASortedInput.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/AutomatonBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/AutomatonBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/EdgeInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/EdgeInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/State.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Trie.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Trie.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutomatonBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutomatonBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EdgeInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EdgeInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/State.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,13 +30,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AutomatonBuilder.java">
+        <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="214" column="63" lean-forward="true" selection-start-line="214" selection-start-column="63" selection-end-line="214" selection-end-column="63" />
-              <folding>
-                <element signature="e#0#10923#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="231">
+              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -58,11 +71,19 @@
               <item name="Trie" type="b2602c69:ProjectViewProjectNode" />
               <item name="Trie" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Trie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Trie" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555014159266" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -123,11 +144,18 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/AutomatonBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="214" column="63" lean-forward="true" selection-start-line="214" selection-start-column="63" selection-end-line="214" selection-end-column="63" />
+        <state relative-caret-position="259">
+          <caret line="174" column="5" lean-forward="true" selection-start-line="174" selection-start-column="5" selection-end-line="174" selection-end-column="5" />
           <folding>
             <element signature="e#0#10923#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
         </state>
       </provider>
     </entry>
