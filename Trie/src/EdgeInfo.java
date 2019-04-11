@@ -2,12 +2,10 @@ import java.util.ArrayList;
 
 public class EdgeInfo {
 
-//    private Character edgeChar;
     private ArrayList<Character> edgeChars = new ArrayList<>();
     private State edgeToState;
 
     public EdgeInfo(Character ch, State s) {
-//        edgeChar = ch;
         edgeChars.add(ch);
         edgeToState = s;
     }
@@ -16,7 +14,7 @@ public class EdgeInfo {
         return edgeChars;
     }
 
-    public State getedgeToState() {
+    public State getEdgeToState() {
         return edgeToState;
     }
 
