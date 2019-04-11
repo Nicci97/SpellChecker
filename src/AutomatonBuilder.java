@@ -7,11 +7,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AutomatonBuilder {
 
     private static ArrayList<State> states = new ArrayList<State>();
     private static ArrayList<State> registry = new ArrayList<>();
+//    private static HashMap<String, State> registry = new HashMap<>();
     private static String word = null;
     private static int lastState = 0;
     private static State startState = null;
@@ -210,6 +212,48 @@ public class AutomatonBuilder {
         if (mergeState == null) {
             registry.add(childState);
         }
+
+//        String checkReg = "";
+//        String checkChild = "";
+////        int registrySize = registry.size();
+////        for (int i = 0; i < registrySize; i++) {
+////            State registryState = registry.get(i);
+////            ArrayList<Character> registryOutgoingEdges = registryState.links;
+//            ArrayList<Character> childOutgoingEdges = childState.links;
+////            // GET STRING FOR REGISTRY STATE
+////            if (registryState.acceptState == true) {
+////                checkReg = "1";
+////            } else {
+////                checkReg = "0";
+////            }
+////            int numberOfEdges = registryOutgoingEdges.size();
+////            for (int j = 0; j < numberOfEdges; j++) {
+////                checkReg = checkReg + registryOutgoingEdges.get(j) + registryState.statesOfLinks.get(j).nameNumber;
+////            }
+//            // GET STRING FOR CHILD STATE
+//            if (childState.acceptState == true) {
+//                checkChild = "1";
+//            } else {
+//                checkChild = "0";
+//            }
+//            int numberOfEdges = childOutgoingEdges.size();
+//            for (int j = 0; j < numberOfEdges; j++) {
+//                checkChild = checkChild + childOutgoingEdges.get(j) + childState.statesOfLinks.get(j).nameNumber;
+//            }
+//
+//            mergeState = registry.get(checkChild);
+//            // COMPARE THE TWO STRINGS
+////            if (checkReg.equals(checkChild)) {
+////                mergeState = registryState;
+////                break;
+////            }
+////        }
+//        if (mergeState == null) {
+//            registry.put(checkChild, childState);
+////            registry.add(checkChild, childState);
+//        }
+
+
         debug("exit replaceOrRegister");
         return mergeState;
     }
