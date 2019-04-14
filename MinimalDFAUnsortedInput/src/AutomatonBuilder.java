@@ -390,6 +390,10 @@ public class AutomatonBuilder {
                 State lastStateState = states.get(lastState);
                 lastStateState.addLink(newState, currentSuffix.charAt(0));
                 secondLastState = lastStateState;
+
+                System.out.println("^^^^removing from register : " + lastStateState.getNameNumber());
+                removeFromRegister(lastStateState);
+
                 replaceOrRegister(lastStateState, currentSuffix.charAt(0));
             } else {
                 newState = new State(newStateCount++, false);
@@ -399,7 +403,14 @@ public class AutomatonBuilder {
                 System.out.println("lastlastlastlast state: " + lastStateState.getNameNumber());
                 System.out.println("HERERERERERER: " + currentSuffix.charAt(0));
                 lastStateState.addLink(newState, currentSuffix.charAt(0));
+
+                System.out.println("^^^^removing from register2 : " + lastStateState.getNameNumber());
+                removeFromRegister(lastStateState);
+
                 addSuffixNextStep(newState, 1, suffixLength, currentSuffix);
+
+
+
                 replaceOrRegister(lastStateState, currentSuffix.charAt(0));
             }
         }
@@ -600,13 +611,30 @@ public class AutomatonBuilder {
     }
 
     private static void removeFromRegister(State state) {
-        String hash = getHash(states.get(lastState));
 
-        if (registry.get(hash) != null) {
 
-            System.out.println("removing from registryyyyyyyy: " + registry.get(hash).getNameNumber());
-            registry.remove(hash);
+//        String hash = getHash(state);
+        String hashToRemove = null;
+        for (String h: registry.keySet()) {
+            if (registry.get(h).getNameNumber() == state.getNameNumber()) {
+                hashToRemove = h;
+//                registry.remove(h);
+            }
         }
+        registry.remove(hashToRemove);
+//        registry.put(getHash(state), state);
+
+//        for (State s: registry.values()) {
+//            if (s.getNameNumber() == state.getNameNumber()) {
+//                registry.remove(getHash(s));
+//            }
+//        }
+
+//        if (registry.get(hash) != null) {
+//
+//            System.out.println("removing from registryyyyyyyy: " + registry.get(hash).getNameNumber());
+//            registry.remove(hash);
+//        }
 
     }
 
@@ -882,6 +910,7 @@ public class AutomatonBuilder {
             if (firstState != null) {
                 lastState = clone(states.get(lastState)).getNameNumber();
             }
+
             System.out.println("came from here");
 //            removeFromRegister(states.get(lastState));
             addSuffix(currentSuffix);
@@ -970,7 +999,14 @@ public class AutomatonBuilder {
                     replaceOrRegister(currentState, nextStep);
 
                 }
-                changed = (oldState.getNameNumber() != states.get(lastState).getNameNumber());
+                System.out.println(oldState);
+                System.out.println(states.get(lastState));
+                if (oldState == null || states.get(lastState) == null) {
+                    changed = false;
+                } else {
+                    changed = (oldState.getNameNumber() != states.get(lastState).getNameNumber());
+                }
+
             }
             if (!changed && (currentIndex > 0)) {
                 String hash = getHash(currentState);
@@ -1031,101 +1067,101 @@ public class AutomatonBuilder {
     }
 
     public void addNewWord(String w) {
-        word = w;
-        String commonPrefix;
-        String currentSuffix;
-        lastState = 0;
-        firstState = null;
-        commonPrefix = findCommonPrefix();
-        currentSuffix = word.substring(commonPrefix.length());
-        if (currentSuffix.equals("") && states.get(lastState).isAcceptState()) {
-            // do nothing
-        } else {
-            firstState(commonPrefix);
-            if (firstState != null) {
-                lastState = clone(states.get(lastState)).getNameNumber();
-            }
-            System.out.println("came from here3");
-            removeFromRegister(states.get(lastState));
-            addSuffix(currentSuffix);
-            State oldState = null;
-            if (firstState != null) {
-                firstState(commonPrefix);
-                magicLoop(commonPrefix);
-
-                Character nextStep = null;
-                if (currentIndex-1 > 0) {
-                    nextStep = getStateAtIndex(startState, currentIndex-1, -1);
-                } else {
-                    nextStep = word.charAt(0);
-                    currentState = startState;
-                }
-                State childState = null;
-                Character edge = null;
-                for (EdgeInfo edgeInfo: currentState.getEdges().values()) {
-                    int sameEdgesSize = edgeInfo.getEdgeChars().size();
-                    for (int j = 0; j < sameEdgesSize; j++) {
-                        if (edgeInfo.getEdgeChars().get(j).equals(nextStep)) {
-                            childState = edgeInfo.getEdgeToState();
-                            edge = edgeInfo.getEdgeChars().get(j);
-                        }
-                    }
-                }
-
-                if (states.get(lastState) != null) {
-                    System.out.println("removing link frommmm " + currentState.getNameNumber() + " to " +
-                            childState.getNameNumber() + " with " + edge);
-                    currentState.removeLink(childState, edge);
-                    currentState.addLink(states.get(lastState), edge);
-                    String hash = getHash(currentState);
-
-                    for (String currentHash: registry.keySet()) {
-                        if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
-                            System.out.println("removing from registry: " + registry.get(currentHash).getNameNumber());
-                            registry.remove(currentHash);
-                            System.out.println("putting in registry hash22332: " + hash + " from registry with node: " + currentState.getNameNumber());
-
-                            registry.put(hash, currentState);
-                            break;
-                        }
-                    }
-                }
-            } else {
-                currentIndex = commonPrefix.length();
-            }
-            boolean changed = true;
-            while (changed) {
-                currentIndex = currentIndex - 1;
-                Character nextStep = null;
-                if (currentIndex > 0) {
-                    nextStep = getStateAtIndex(startState, currentIndex, -1);
-                }
-                oldState = states.get(lastState);
-                if (currentIndex > 0) {
-                    System.out.println("came from her4");
-                    removeFromRegister(states.get(lastState));
-                }
-
-                if (nextStep != null) {
-                    replaceOrRegister(currentState, nextStep);
-
-                }
-                changed = (oldState.getNameNumber() != states.get(lastState).getNameNumber());
-            }
-            if (!changed && (currentIndex > 0)) {
-                String hash = getHash(currentState);
-                for (String h: registry.keySet()) {
-                    if (registry.get(h).getNameNumber() == currentState.getNameNumber()) {
-                        System.out.println("removing from registry: " + registry.get(h).getNameNumber());
-                        registry.remove(h);
-                        break;
-                    }
-                }
-                System.out.println("putting in registry hash22442: " + hash + " from registry with node: " + currentState.getNameNumber());
-
-                registry.put(hash, currentState);
-            }
-        }
+//        word = w;
+//        String commonPrefix;
+//        String currentSuffix;
+//        lastState = 0;
+//        firstState = null;
+//        commonPrefix = findCommonPrefix();
+//        currentSuffix = word.substring(commonPrefix.length());
+//        if (currentSuffix.equals("") && states.get(lastState).isAcceptState()) {
+//            // do nothing
+//        } else {
+//            firstState(commonPrefix);
+//            if (firstState != null) {
+//                lastState = clone(states.get(lastState)).getNameNumber();
+//            }
+//            System.out.println("came from here3");
+//            removeFromRegister(states.get(lastState));
+//            addSuffix(currentSuffix);
+//            State oldState = null;
+//            if (firstState != null) {
+//                firstState(commonPrefix);
+//                magicLoop(commonPrefix);
+//
+//                Character nextStep = null;
+//                if (currentIndex-1 > 0) {
+//                    nextStep = getStateAtIndex(startState, currentIndex-1, -1);
+//                } else {
+//                    nextStep = word.charAt(0);
+//                    currentState = startState;
+//                }
+//                State childState = null;
+//                Character edge = null;
+//                for (EdgeInfo edgeInfo: currentState.getEdges().values()) {
+//                    int sameEdgesSize = edgeInfo.getEdgeChars().size();
+//                    for (int j = 0; j < sameEdgesSize; j++) {
+//                        if (edgeInfo.getEdgeChars().get(j).equals(nextStep)) {
+//                            childState = edgeInfo.getEdgeToState();
+//                            edge = edgeInfo.getEdgeChars().get(j);
+//                        }
+//                    }
+//                }
+//
+//                if (states.get(lastState) != null) {
+//                    System.out.println("removing link frommmm " + currentState.getNameNumber() + " to " +
+//                            childState.getNameNumber() + " with " + edge);
+//                    currentState.removeLink(childState, edge);
+//                    currentState.addLink(states.get(lastState), edge);
+//                    String hash = getHash(currentState);
+//
+//                    for (String currentHash: registry.keySet()) {
+//                        if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
+//                            System.out.println("removing from registry: " + registry.get(currentHash).getNameNumber());
+//                            registry.remove(currentHash);
+//                            System.out.println("putting in registry hash22332: " + hash + " from registry with node: " + currentState.getNameNumber());
+//
+//                            registry.put(hash, currentState);
+//                            break;
+//                        }
+//                    }
+//                }
+//            } else {
+//                currentIndex = commonPrefix.length();
+//            }
+//            boolean changed = true;
+//            while (changed) {
+//                currentIndex = currentIndex - 1;
+//                Character nextStep = null;
+//                if (currentIndex > 0) {
+//                    nextStep = getStateAtIndex(startState, currentIndex, -1);
+//                }
+//                oldState = states.get(lastState);
+//                if (currentIndex > 0) {
+//                    System.out.println("came from her4");
+//                    removeFromRegister(states.get(lastState));
+//                }
+//
+//                if (nextStep != null) {
+//                    replaceOrRegister(currentState, nextStep);
+//
+//                }
+//                changed = (oldState.getNameNumber() != states.get(lastState).getNameNumber());
+//            }
+//            if (!changed && (currentIndex > 0)) {
+//                String hash = getHash(currentState);
+//                for (String h: registry.keySet()) {
+//                    if (registry.get(h).getNameNumber() == currentState.getNameNumber()) {
+//                        System.out.println("removing from registry: " + registry.get(h).getNameNumber());
+//                        registry.remove(h);
+//                        break;
+//                    }
+//                }
+//                System.out.println("putting in registry hash22442: " + hash + " from registry with node: " + currentState.getNameNumber());
+//
+//                registry.put(hash, currentState);
+//            }
+//        }
 
     }
 
