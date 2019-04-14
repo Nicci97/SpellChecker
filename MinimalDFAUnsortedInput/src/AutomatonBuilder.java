@@ -3,10 +3,9 @@
  * ASCII value comparison function found at https://stackoverflow.com/questions/26553889/comparing-2-strings-by-ascii-values-in-java
  */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class AutomatonBuilder {
@@ -36,7 +35,7 @@ public class AutomatonBuilder {
         System.out.println(str);
     }
 
-    public static void doDFS() {
+    public static ArrayList<String> doDFS() {
         ArrayList<String> results = new ArrayList<>();
         ArrayList<String> results2 = new ArrayList<>();
 
@@ -53,7 +52,9 @@ public class AutomatonBuilder {
         for (int i = 0; i < results.size(); i++) {
             debug2(results.get(i));
         }
+
         System.out.println("Number of words in the output language: " + results.size());
+        return results;
     }
 
     public static ArrayList<String> doDFSnextStep(State state) {
@@ -570,223 +571,223 @@ public class AutomatonBuilder {
         registry.remove(hash);
     }
 
-    public static void main(String[] args) throws IOException {
-        debug("enter main");
-        String commonPrefix;
-        String currentSuffix;
-
-        //Create the start state
-        startState = new State(0, true);
-        states.put(startState.getNameNumber(), startState);
-
-        //set up reader for input of asciibetically sorted dictionary in the format one word per line
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        word = br.readLine();
-        int count = 0;
-        while (word != null) {
-            lastState = 0;
-            firstState = null;
-            count++;
-            commonPrefix = findCommonPrefix();
-            currentSuffix = word.substring(commonPrefix.length());
-//            System.out.println("---------");
-//            System.out.println("word: " + word);
-//            System.out.println("common Prefix: " + commonPrefix);
-//            System.out.println("current Suffix: " + currentSuffix);
-//            System.out.println("---------");
-
-            //TODO if currentSuffix = empty and the transition is valid element of F.... in algorithm, not really sure whats up
-//            System.out.println("last state: ::::; " + lastState);
-            if (currentSuffix.equals("") && states.get(lastState).isAcceptState()) {
-                word = br.readLine();
-                continue;
-            }
-
-//            if (firstState != null) {
-//                System.out.println("first State before: " + firstState.getNameNumber());
-//            } else {
-//                System.out.println("first State before: " + firstState);
-//            }
-//            System.out.println("last State before: " + states.get(lastState).getNameNumber());
-
-            firstState(commonPrefix);
-//            if (firstState != null) {
-//                System.out.println("first State after: " + firstState.getNameNumber());
-//            } else {
-//                System.out.println("first State after: " + firstState);
-//            }
-//            System.out.println("last State after: " + states.get(lastState).getNameNumber());
+//    public static void main(String[] args) throws IOException {
+//        debug("enter main");
+//        String commonPrefix;
+//        String currentSuffix;
 //
-//            System.out.println("FIRST STATETEETETETETEETETE: " + firstState);
-            if (firstState != null) {
-                // make a copy of the last state and make lastState equal to it
-//                State lastStateState = states.get(lastState);
-//                State newState =  new State(newStateCount++, lastStateState.isAcceptState());
-//                for (EdgeInfo edgeInfo: lastStateState.getEdges().values()) {
-//                    if (edgeInfo.getEdgeChars().size() == 1) {
-//                        newState.addLink(edgeInfo.getEdgeToState(),edgeInfo.getEdgeChars().get(0));
-//                    } else {
-//                        newState.addLink(edgeInfo.getEdgeToState(),edgeInfo.getEdgeChars().get(0));
-//                        for (int i = 1; i < edgeInfo.getEdgeChars().size(); i++) {
-//                        newState.addLink(edgeInfo.getEdgeToState(),edgeInfo.getEdgeChars().get(i));
+//        //Create the start state
+//        startState = new State(0, true);
+//        states.put(startState.getNameNumber(), startState);
+//
+//        //set up reader for input of asciibetically sorted dictionary in the format one word per line
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        word = br.readLine();
+//        int count = 0;
+//        while (word != null) {
+//            lastState = 0;
+//            firstState = null;
+//            count++;
+//            commonPrefix = findCommonPrefix();
+//            currentSuffix = word.substring(commonPrefix.length());
+////            System.out.println("---------");
+////            System.out.println("word: " + word);
+////            System.out.println("common Prefix: " + commonPrefix);
+////            System.out.println("current Suffix: " + currentSuffix);
+////            System.out.println("---------");
+//
+//            //TODO if currentSuffix = empty and the transition is valid element of F.... in algorithm, not really sure whats up
+////            System.out.println("last state: ::::; " + lastState);
+//            if (currentSuffix.equals("") && states.get(lastState).isAcceptState()) {
+//                word = br.readLine();
+//                continue;
+//            }
+//
+////            if (firstState != null) {
+////                System.out.println("first State before: " + firstState.getNameNumber());
+////            } else {
+////                System.out.println("first State before: " + firstState);
+////            }
+////            System.out.println("last State before: " + states.get(lastState).getNameNumber());
+//
+//            firstState(commonPrefix);
+////            if (firstState != null) {
+////                System.out.println("first State after: " + firstState.getNameNumber());
+////            } else {
+////                System.out.println("first State after: " + firstState);
+////            }
+////            System.out.println("last State after: " + states.get(lastState).getNameNumber());
+////
+////            System.out.println("FIRST STATETEETETETETEETETE: " + firstState);
+//            if (firstState != null) {
+//                // make a copy of the last state and make lastState equal to it
+////                State lastStateState = states.get(lastState);
+////                State newState =  new State(newStateCount++, lastStateState.isAcceptState());
+////                for (EdgeInfo edgeInfo: lastStateState.getEdges().values()) {
+////                    if (edgeInfo.getEdgeChars().size() == 1) {
+////                        newState.addLink(edgeInfo.getEdgeToState(),edgeInfo.getEdgeChars().get(0));
+////                    } else {
+////                        newState.addLink(edgeInfo.getEdgeToState(),edgeInfo.getEdgeChars().get(0));
+////                        for (int i = 1; i < edgeInfo.getEdgeChars().size(); i++) {
+////                        newState.addLink(edgeInfo.getEdgeToState(),edgeInfo.getEdgeChars().get(i));
+////                        }
+////                    }
+////                }
+////                newState.updatelastAdded(lastStateState.getLastLinkAdded(), lastStateState.getCharOfLastLinkAdded());
+////                lastState = newState.getNameNumber();
+//
+//                lastState = clone(states.get(lastState)).getNameNumber();
+////                System.out.println("cloning last state: " + lastState);
+//            }
+//
+//            //                    if (currentIndex > 0) {
+//            removeFromRegister(states.get(lastState));
+////                    }
+//            addSuffix(currentSuffix);
+//
+////            State currentState = null;
+//            State oldState = null;
+//            if (firstState != null) {
+//                firstState(commonPrefix);
+//                magicLoop(commonPrefix);
+//
+/////////////////////////
+//                Character nextStep = null;
+//                if (currentIndex-1 > 0) {
+//                    nextStep = getStateAtIndex(startState, currentIndex-1, -1);
+//                } else {
+//                    nextStep = word.charAt(0);
+//                    currentState = startState;
+//                }
+//                State childState = null;
+//                Character edge = null;
+//
+////                if (currentState == null) {
+////                    currentState = startState;
+////                    edge = word.charAt(0);
+////                    nextStep = edge;
+////                    System.out.println("next step::: " + nextStep);
+////                }
+////                System.out.println("I'm debuggging: " + currentState);
+//                for (EdgeInfo edgeInfo: currentState.getEdges().values()) {
+//                    int sameEdgesSize = edgeInfo.getEdgeChars().size();
+//                    for (int j = 0; j < sameEdgesSize; j++) {
+//                        if (edgeInfo.getEdgeChars().get(j).equals(nextStep)) {
+//                            childState = edgeInfo.getEdgeToState();
+//                            edge = edgeInfo.getEdgeChars().get(j);
 //                        }
 //                    }
 //                }
-//                newState.updatelastAdded(lastStateState.getLastLinkAdded(), lastStateState.getCharOfLastLinkAdded());
-//                lastState = newState.getNameNumber();
-
-                lastState = clone(states.get(lastState)).getNameNumber();
-//                System.out.println("cloning last state: " + lastState);
-            }
-
-            //                    if (currentIndex > 0) {
-            removeFromRegister(states.get(lastState));
-//                    }
-            addSuffix(currentSuffix);
-
-//            State currentState = null;
-            State oldState = null;
-            if (firstState != null) {
-                firstState(commonPrefix);
-                magicLoop(commonPrefix);
-
-///////////////////////
-                Character nextStep = null;
-                if (currentIndex-1 > 0) {
-                    nextStep = getStateAtIndex(startState, currentIndex-1, -1);
-                } else {
-                    nextStep = word.charAt(0);
-                    currentState = startState;
-                }
-                State childState = null;
-                Character edge = null;
-
-//                if (currentState == null) {
-//                    currentState = startState;
-//                    edge = word.charAt(0);
-//                    nextStep = edge;
-//                    System.out.println("next step::: " + nextStep);
-//                }
-//                System.out.println("I'm debuggging: " + currentState);
-                for (EdgeInfo edgeInfo: currentState.getEdges().values()) {
-                    int sameEdgesSize = edgeInfo.getEdgeChars().size();
-                    for (int j = 0; j < sameEdgesSize; j++) {
-                        if (edgeInfo.getEdgeChars().get(j).equals(nextStep)) {
-                            childState = edgeInfo.getEdgeToState();
-                            edge = edgeInfo.getEdgeChars().get(j);
-                        }
-                    }
-                }
-
-
-                if (states.get(lastState) != null) {
-//                    System.out.println("making link from : " + currentState.getNameNumber() + " to " +
-//                            states.get(lastState).getNameNumber() + " on " + edge);
-//                    System.out.println("chilstate: " + childState.getNameNumber());
-                    currentState.removeLink(childState, edge);
-//                        System.out.println(lastState);
-                    currentState.addLink(states.get(lastState), edge);
-                    String hash = getHash(currentState);
-
-                    for (String currentHash: registry.keySet()) {
-                        if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
-                            registry.remove(currentHash);
-                            registry.put(hash, currentState);
-                            break;
-                        }
-                    }
-                }
-///////////////////////
-
-            } else {
-                currentIndex = commonPrefix.length();
-            }
-//            System.out.println("current index: " + currentIndex);
-            boolean changed = true;
-            while (changed) {
-                currentIndex = currentIndex - 1;
-                Character nextStep = null;
-                if (currentIndex > 0) {
-                    nextStep = getStateAtIndex(startState, currentIndex, -1);
-                }
-//                if (currentIndex == -1) {
-//                    nextStep = getStateAtIndex(startState, 0, -1);
-//                }
-//                Character nextStep = getStateAtIndex(startState, currentIndex, -1);
-//                System.out.println("next step: " + nextStep);
-                oldState = states.get(lastState);
-                if (currentIndex > 0) {
-                    removeFromRegister(states.get(lastState));
-                }
-//                if (currentIndex == -1) {
-//                    currentState = startState;
-//                }
-//                System.out.println("++++" + currentState.getNameNumber());
-
-                if (nextStep != null) {
-//                    System.out.println("IN HERE ONE LAST TIME");
-
-//                    State childState = null;
-//                    Character edge = null;
-//                    for (EdgeInfo edgeInfo: currentState.getEdges().values()) {
-//                        int sameEdgesSize = edgeInfo.getEdgeChars().size();
-//                        for (int j = 0; j < sameEdgesSize; j++) {
-//                            if (edgeInfo.getEdgeChars().get(j).equals(nextStep)) {
-//                                childState = edgeInfo.getEdgeToState();
-//                                edge = edgeInfo.getEdgeChars().get(j);
-//                            }
-//                        }
-//                    }
 //
 //
-//                    if (states.get(lastState) != null) {
-//                        System.out.println("making link from : " + currentState.getNameNumber() + " to " +
-//                                states.get(lastState).getNameNumber() + " on " + edge);
-//                        System.out.println("chilstate: " + childState.getNameNumber());
-//                        currentState.removeLink(childState, edge);
+//                if (states.get(lastState) != null) {
+////                    System.out.println("making link from : " + currentState.getNameNumber() + " to " +
+////                            states.get(lastState).getNameNumber() + " on " + edge);
+////                    System.out.println("chilstate: " + childState.getNameNumber());
+//                    currentState.removeLink(childState, edge);
 ////                        System.out.println(lastState);
-//                        currentState.addLink(states.get(lastState), edge);
-//                        String hash = getHash(currentState);
+//                    currentState.addLink(states.get(lastState), edge);
+//                    String hash = getHash(currentState);
 //
-//                        for (String currentHash: registry.keySet()) {
-//                            if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
-//                                registry.remove(currentHash);
-//                                registry.put(hash, currentState);
-//                                break;
-//                            }
+//                    for (String currentHash: registry.keySet()) {
+//                        if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
+//                            registry.remove(currentHash);
+//                            registry.put(hash, currentState);
+//                            break;
 //                        }
 //                    }
-                    replaceOrRegister(currentState, nextStep);
-
-                }
-//                replaceOrRegister(currentState, nextStep);
-
-                changed = (oldState.getNameNumber() != states.get(lastState).getNameNumber());
-            }
-//            System.out.println(currentIndex);
-            if (!changed && (currentIndex > 0)) {
-//                System.out.println("in here");
-                String hash = getHash(currentState);
-                String oldHash = null;
-                for (String h: registry.keySet()) {
-                    if (registry.get(h).getNameNumber() == currentState.getNameNumber()) {
-                        oldHash = h;
-//                        System.out.println("removing old hash: " + oldHash + " from registry with node: " + registry.get(h).getNameNumber());
-                        registry.remove(h);
-                        break;
-                    }
-                }
-//                System.out.println("putting in registry hash: " + hash + " from registry with node: " + currentState.getNameNumber());
-                registry.put(hash, currentState);
-            }
-            word = br.readLine();
-        }
-        debug("exit main");
-
-        doDFS();
-        System.out.println("Number of words in the input language: " + count);
-        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
-    }
+//                }
+/////////////////////////
+//
+//            } else {
+//                currentIndex = commonPrefix.length();
+//            }
+////            System.out.println("current index: " + currentIndex);
+//            boolean changed = true;
+//            while (changed) {
+//                currentIndex = currentIndex - 1;
+//                Character nextStep = null;
+//                if (currentIndex > 0) {
+//                    nextStep = getStateAtIndex(startState, currentIndex, -1);
+//                }
+////                if (currentIndex == -1) {
+////                    nextStep = getStateAtIndex(startState, 0, -1);
+////                }
+////                Character nextStep = getStateAtIndex(startState, currentIndex, -1);
+////                System.out.println("next step: " + nextStep);
+//                oldState = states.get(lastState);
+//                if (currentIndex > 0) {
+//                    removeFromRegister(states.get(lastState));
+//                }
+////                if (currentIndex == -1) {
+////                    currentState = startState;
+////                }
+////                System.out.println("++++" + currentState.getNameNumber());
+//
+//                if (nextStep != null) {
+////                    System.out.println("IN HERE ONE LAST TIME");
+//
+////                    State childState = null;
+////                    Character edge = null;
+////                    for (EdgeInfo edgeInfo: currentState.getEdges().values()) {
+////                        int sameEdgesSize = edgeInfo.getEdgeChars().size();
+////                        for (int j = 0; j < sameEdgesSize; j++) {
+////                            if (edgeInfo.getEdgeChars().get(j).equals(nextStep)) {
+////                                childState = edgeInfo.getEdgeToState();
+////                                edge = edgeInfo.getEdgeChars().get(j);
+////                            }
+////                        }
+////                    }
+////
+////
+////                    if (states.get(lastState) != null) {
+////                        System.out.println("making link from : " + currentState.getNameNumber() + " to " +
+////                                states.get(lastState).getNameNumber() + " on " + edge);
+////                        System.out.println("chilstate: " + childState.getNameNumber());
+////                        currentState.removeLink(childState, edge);
+//////                        System.out.println(lastState);
+////                        currentState.addLink(states.get(lastState), edge);
+////                        String hash = getHash(currentState);
+////
+////                        for (String currentHash: registry.keySet()) {
+////                            if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
+////                                registry.remove(currentHash);
+////                                registry.put(hash, currentState);
+////                                break;
+////                            }
+////                        }
+////                    }
+//                    replaceOrRegister(currentState, nextStep);
+//
+//                }
+////                replaceOrRegister(currentState, nextStep);
+//
+//                changed = (oldState.getNameNumber() != states.get(lastState).getNameNumber());
+//            }
+////            System.out.println(currentIndex);
+//            if (!changed && (currentIndex > 0)) {
+////                System.out.println("in here");
+//                String hash = getHash(currentState);
+//                String oldHash = null;
+//                for (String h: registry.keySet()) {
+//                    if (registry.get(h).getNameNumber() == currentState.getNameNumber()) {
+//                        oldHash = h;
+////                        System.out.println("removing old hash: " + oldHash + " from registry with node: " + registry.get(h).getNameNumber());
+//                        registry.remove(h);
+//                        break;
+//                    }
+//                }
+////                System.out.println("putting in registry hash: " + hash + " from registry with node: " + currentState.getNameNumber());
+//                registry.put(hash, currentState);
+//            }
+//            word = br.readLine();
+//        }
+//        debug("exit main");
+//
+//        doDFS();
+//        System.out.println("Number of words in the input language: " + count);
+//        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
+//    }
 
     private static State clone(State stateToClone) {
         State lastStateState = stateToClone;
@@ -804,5 +805,287 @@ public class AutomatonBuilder {
         newState.updatelastAdded(lastStateState.getLastLinkAdded(), lastStateState.getCharOfLastLinkAdded());
         states.put(newState.getNameNumber(), newState);
         return newState;
+    }
+
+    public void create(String filePath) throws IOException {
+        System.out.println("enter create");
+        String commonPrefix;
+        String currentSuffix;
+
+        //Create the start state
+        startState = new State(0, true);
+        states.put(startState.getNameNumber(), startState);
+
+        File initialFile = new File(filePath);
+        InputStream targetStream = new FileInputStream(initialFile);
+        BufferedReader br = new BufferedReader(new InputStreamReader(targetStream));
+        word = br.readLine();
+        int count = 0;
+        while (word != null) {
+            System.out.println(word);
+            lastState = 0;
+            firstState = null;
+            count++;
+            commonPrefix = findCommonPrefix();
+            currentSuffix = word.substring(commonPrefix.length());
+            if (currentSuffix.equals("") && states.get(lastState).isAcceptState()) {
+                word = br.readLine();
+                continue;
+            }
+            firstState(commonPrefix);
+            if (firstState != null) {
+                lastState = clone(states.get(lastState)).getNameNumber();
+            }
+            removeFromRegister(states.get(lastState));
+            addSuffix(currentSuffix);
+            State oldState = null;
+            if (firstState != null) {
+                firstState(commonPrefix);
+                magicLoop(commonPrefix);
+
+                Character nextStep = null;
+                if (currentIndex-1 > 0) {
+                    nextStep = getStateAtIndex(startState, currentIndex-1, -1);
+                } else {
+                    nextStep = word.charAt(0);
+                    currentState = startState;
+                }
+                State childState = null;
+                Character edge = null;
+                for (EdgeInfo edgeInfo: currentState.getEdges().values()) {
+                    int sameEdgesSize = edgeInfo.getEdgeChars().size();
+                    for (int j = 0; j < sameEdgesSize; j++) {
+                        if (edgeInfo.getEdgeChars().get(j).equals(nextStep)) {
+                            childState = edgeInfo.getEdgeToState();
+                            edge = edgeInfo.getEdgeChars().get(j);
+                        }
+                    }
+                }
+
+                if (states.get(lastState) != null) {
+                    currentState.removeLink(childState, edge);
+                    currentState.addLink(states.get(lastState), edge);
+                    String hash = getHash(currentState);
+
+                    for (String currentHash: registry.keySet()) {
+                        if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
+                            registry.remove(currentHash);
+                            registry.put(hash, currentState);
+                            break;
+                        }
+                    }
+                }
+            } else {
+                currentIndex = commonPrefix.length();
+            }
+            boolean changed = true;
+            while (changed) {
+                currentIndex = currentIndex - 1;
+                Character nextStep = null;
+                if (currentIndex > 0) {
+                    nextStep = getStateAtIndex(startState, currentIndex, -1);
+                }
+                oldState = states.get(lastState);
+                if (currentIndex > 0) {
+                    removeFromRegister(states.get(lastState));
+                }
+
+                if (nextStep != null) {
+                    replaceOrRegister(currentState, nextStep);
+
+                }
+                changed = (oldState.getNameNumber() != states.get(lastState).getNameNumber());
+            }
+            if (!changed && (currentIndex > 0)) {
+                String hash = getHash(currentState);
+                for (String h: registry.keySet()) {
+                    if (registry.get(h).getNameNumber() == currentState.getNameNumber()) {
+                        registry.remove(h);
+                        break;
+                    }
+                }
+                registry.put(hash, currentState);
+            }
+            word = br.readLine();
+        }
+
+        doDFS();
+        System.out.println("Number of words in the input language: " + count);
+        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
+    }
+
+    public boolean membership(String word) {
+        int index = 0;
+        boolean found = false;
+        if (index == word.length()) {
+            return true;
+        }
+        for (EdgeInfo edgeInfo: startState.getEdges().values()) {
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
+                    State nextState = edgeInfo.getEdgeToState();
+                    found = membershipNextStep(nextState, word, index+1);
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    public boolean membershipNextStep(State state, String word, int index) {
+        boolean found = false;
+        if (index == word.length()) {
+            return true;
+        }
+        for (EdgeInfo edgeInfo: state.getEdges().values()) {
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
+                    State nextState = edgeInfo.getEdgeToState();
+                    found = membershipNextStep(nextState, word, index+1);
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    public void addNewWord(String w) {
+        word = w;
+        String commonPrefix;
+        String currentSuffix;
+        lastState = 0;
+        firstState = null;
+        commonPrefix = findCommonPrefix();
+        currentSuffix = word.substring(commonPrefix.length());
+        if (currentSuffix.equals("") && states.get(lastState).isAcceptState()) {
+            // do nothing
+        } else {
+            firstState(commonPrefix);
+            if (firstState != null) {
+                lastState = clone(states.get(lastState)).getNameNumber();
+            }
+            removeFromRegister(states.get(lastState));
+            addSuffix(currentSuffix);
+            State oldState = null;
+            if (firstState != null) {
+                firstState(commonPrefix);
+                magicLoop(commonPrefix);
+
+                Character nextStep = null;
+                if (currentIndex-1 > 0) {
+                    nextStep = getStateAtIndex(startState, currentIndex-1, -1);
+                } else {
+                    nextStep = word.charAt(0);
+                    currentState = startState;
+                }
+                State childState = null;
+                Character edge = null;
+                for (EdgeInfo edgeInfo: currentState.getEdges().values()) {
+                    int sameEdgesSize = edgeInfo.getEdgeChars().size();
+                    for (int j = 0; j < sameEdgesSize; j++) {
+                        if (edgeInfo.getEdgeChars().get(j).equals(nextStep)) {
+                            childState = edgeInfo.getEdgeToState();
+                            edge = edgeInfo.getEdgeChars().get(j);
+                        }
+                    }
+                }
+
+                if (states.get(lastState) != null) {
+                    currentState.removeLink(childState, edge);
+                    currentState.addLink(states.get(lastState), edge);
+                    String hash = getHash(currentState);
+
+                    for (String currentHash: registry.keySet()) {
+                        if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
+                            registry.remove(currentHash);
+                            registry.put(hash, currentState);
+                            break;
+                        }
+                    }
+                }
+            } else {
+                currentIndex = commonPrefix.length();
+            }
+            boolean changed = true;
+            while (changed) {
+                currentIndex = currentIndex - 1;
+                Character nextStep = null;
+                if (currentIndex > 0) {
+                    nextStep = getStateAtIndex(startState, currentIndex, -1);
+                }
+                oldState = states.get(lastState);
+                if (currentIndex > 0) {
+                    removeFromRegister(states.get(lastState));
+                }
+
+                if (nextStep != null) {
+                    replaceOrRegister(currentState, nextStep);
+
+                }
+                changed = (oldState.getNameNumber() != states.get(lastState).getNameNumber());
+            }
+            if (!changed && (currentIndex > 0)) {
+                String hash = getHash(currentState);
+                for (String h: registry.keySet()) {
+                    if (registry.get(h).getNameNumber() == currentState.getNameNumber()) {
+                        registry.remove(h);
+                        break;
+                    }
+                }
+                registry.put(hash, currentState);
+            }
+        }
+
+    }
+
+    public String getCorrection(String word) {
+        ArrayList<String> results = new ArrayList<>();
+        results = doDFS();
+        String newCorrection = "";
+        int bestDistance = getLevenshteinDistance(word, results.get(0));;
+        int size = results.size();
+        for (int i = 1; i < size; i++) {
+            int levenshteinDistance = getLevenshteinDistance(word, results.get(i));
+            if (levenshteinDistance < bestDistance) {
+                bestDistance = levenshteinDistance;
+                newCorrection = results.get(i);
+            }
+        }
+        System.out.println("levenstein distance to return with " + newCorrection + " " + bestDistance);
+        return newCorrection;
+    }
+
+    /* derived from https://www.baeldung.com/java-levenshtein-distance */
+    public int getLevenshteinDistance(String wrongWord, String actualWord) {
+        int[][] dp = new int[wrongWord.length() + 1][actualWord.length() + 1];
+
+        for (int i = 0; i <= wrongWord.length(); i++) {
+            for (int j = 0; j <= actualWord.length(); j++) {
+                if (i == 0) {
+                    dp[i][j] = j;
+                }
+                else if (j == 0) {
+                    dp[i][j] = i;
+                }
+                else {
+                    dp[i][j] = min(dp[i - 1][j - 1]  + costOfSubstitution(wrongWord.charAt(i - 1), actualWord.charAt(j - 1)),
+                            dp[i - 1][j] + 1,
+                            dp[i][j - 1] + 1);
+                }
+            }
+        }
+
+        return dp[wrongWord.length()][actualWord.length()];
+    }
+
+    public static int costOfSubstitution(char a, char b) {
+        return a == b ? 0 : 1;
+    }
+
+    public static int min(int... numbers) {
+        return Arrays.stream(numbers)
+                .min().orElse(Integer.MAX_VALUE);
     }
 }

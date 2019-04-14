@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a5c6adc7-dcda-423d-b481-5bb16c2752f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/data/output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/SpellChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/SpellChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/SpellChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/SpellChecker.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +18,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-10571">
-              <caret line="64" column="35" lean-forward="true" selection-start-line="64" selection-start-column="35" selection-end-line="64" selection-end-column="35" />
+            <state relative-caret-position="371">
+              <caret line="820" column="84" selection-start-line="820" selection-start-column="84" selection-end-line="820" selection-end-column="84" />
+              <folding>
+                <element signature="e#47324#47325#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="38" column="59" lean-forward="true" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -51,6 +63,13 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>new State</find>
@@ -74,6 +93,7 @@
       <list>
         <option value="$PROJECT_DIR$/AutomatonBuilder.java" />
         <option value="$PROJECT_DIR$/src/State.java" />
+        <option value="$PROJECT_DIR$/src/SpellChecker.java" />
         <option value="$PROJECT_DIR$/src/AutomatonBuilder.java" />
       </list>
     </option>
@@ -111,7 +131,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555197945375" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555263947059" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -194,10 +214,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="38" column="59" lean-forward="true" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10571">
-          <caret line="64" column="35" lean-forward="true" selection-start-line="64" selection-start-column="35" selection-end-line="64" selection-end-column="35" />
+        <state relative-caret-position="371">
+          <caret line="820" column="84" selection-start-line="820" selection-start-column="84" selection-end-line="820" selection-end-column="84" />
+          <folding>
+            <element signature="e#47324#47325#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
