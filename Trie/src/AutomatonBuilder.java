@@ -3,9 +3,7 @@
  * ASCII value comparison function found at https://stackoverflow.com/questions/26553889/comparing-2-strings-by-ascii-values-in-java
  */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -212,7 +210,34 @@ public class AutomatonBuilder {
         debug("exit addSuffix");
     }
 
-    public static void main(String[] args) throws IOException {
+//    public static void buildAutomaton(String filePath) {
+//        debug("enter main");
+//        String commonPrefix;
+//        String currentSuffix;
+//
+//        //Create the start state
+//        startState = new State(0, true);
+//        states.put(startState.getNameNumber(), startState);
+//
+//        //set up reader for input of asciibetically sorted dictionary in the format one word per line
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        word = br.readLine();
+//        int count = 0;
+//        while (word != null) {
+//            count++;
+//            commonPrefix = findCommonPrefix();
+//            currentSuffix = word.substring(commonPrefix.length());
+//            addSuffix(currentSuffix);
+//            word = br.readLine();
+//        }
+//        debug("exit main");
+//
+//        doDFS();
+//        System.out.println("Number of words in the input language: " + count);
+//        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
+//    }
+
+    public void create(String filePath) throws IOException {
         debug("enter main");
         String commonPrefix;
         String currentSuffix;
@@ -222,7 +247,9 @@ public class AutomatonBuilder {
         states.put(startState.getNameNumber(), startState);
 
         //set up reader for input of asciibetically sorted dictionary in the format one word per line
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        File initialFile = new File(filePath);
+        InputStream targetStream = new FileInputStream(initialFile);
+        BufferedReader br = new BufferedReader(new InputStreamReader(targetStream));
         word = br.readLine();
         int count = 0;
         while (word != null) {
@@ -237,6 +264,43 @@ public class AutomatonBuilder {
         doDFS();
         System.out.println("Number of words in the input language: " + count);
         System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
+    }
+
+    public boolean membership(String word) {
+        int index = 0;
+        boolean found = false;
+        if (index == word.length()) {
+            return true;
+        }
+        for (EdgeInfo edgeInfo: startState.getEdges().values()) {
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
+                    State nextState = edgeInfo.getEdgeToState();
+                    found = membershipNextStep(nextState, word, index+1);
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    public boolean membershipNextStep(State state, String word, int index) {
+        boolean found = false;
+        if (index == word.length()) {
+            return true;
+        }
+        for (EdgeInfo edgeInfo: state.getEdges().values()) {
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
+                    State nextState = edgeInfo.getEdgeToState();
+                    found = membershipNextStep(nextState, word, index+1);
+                    break;
+                }
+            }
+        }
+        return found;
     }
 
 }
