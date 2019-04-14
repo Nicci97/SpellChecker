@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a5c6adc7-dcda-423d-b481-5bb16c2752f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/smallExample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/smallExample.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/output.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="641" column="55" selection-start-line="641" selection-start-column="55" selection-end-line="641" selection-end-column="55" />
+            <state relative-caret-position="454">
+              <caret line="658" column="32" selection-start-line="658" selection-start-column="32" selection-end-line="658" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -176,8 +174,8 @@
     <entry file="file://$PROJECT_DIR$/AutomatonBuilder.java" />
     <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="641" column="55" selection-start-line="641" selection-start-column="55" selection-end-line="641" selection-end-column="55" />
+        <state relative-caret-position="454">
+          <caret line="658" column="32" selection-start-line="658" selection-start-column="32" selection-end-line="658" selection-end-column="32" />
         </state>
       </provider>
     </entry>

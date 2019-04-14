@@ -654,9 +654,20 @@ public class AutomatonBuilder {
                 Character nextStep = null;
                 if (currentIndex-1 > 0) {
                     nextStep = getStateAtIndex(startState, currentIndex-1, -1);
+                } else {
+                    nextStep = word.charAt(0);
+                    currentState = startState;
                 }
                 State childState = null;
                 Character edge = null;
+
+//                if (currentState == null) {
+//                    currentState = startState;
+//                    edge = word.charAt(0);
+//                    nextStep = edge;
+//                    System.out.println("next step::: " + nextStep);
+//                }
+//                System.out.println("I'm debuggging: " + currentState);
                 for (EdgeInfo edgeInfo: currentState.getEdges().values()) {
                     int sameEdgesSize = edgeInfo.getEdgeChars().size();
                     for (int j = 0; j < sameEdgesSize; j++) {
