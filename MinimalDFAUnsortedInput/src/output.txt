@@ -1,0 +1,159 @@
+kwaya
+---------
+word: kwaya
+common Prefix: 
+current Suffix: kwaya
+---------
+came from here
+0
+lastlastlastlast state: 0
+HERERERERERER: k
+ i am 4
+a
+all: a
+STATTE 4:::::::a
+edge: a
+childstate: 5 hash: 1
+registering state: 5 with hash 1
+putting in registry hash111: 1 from registry with node: 5
+ i am 3
+y
+all: y
+STATTE 3:::::::y
+edge: y
+childstate: 4 hash: 0a5
+registering state: 4 with hash 0a5
+putting in registry hash111: 0a5 from registry with node: 4
+ i am 2
+a
+all: a
+STATTE 2:::::::a
+edge: a
+childstate: 3 hash: 0y4
+registering state: 3 with hash 0y4
+putting in registry hash111: 0y4 from registry with node: 3
+ i am 1
+w
+all: w
+STATTE 1:::::::w
+edge: w
+childstate: 2 hash: 0a3
+registering state: 2 with hash 0a3
+putting in registry hash111: 0a3 from registry with node: 2
+ i am 0
+k
+all: k
+STATTE 0:::::::k
+edge: k
+childstate: 1 hash: 0w2
+registering state: 1 with hash 0w2
+putting in registry hash111: 0w2 from registry with node: 1
+kwaye
+WORD LENGTH: 5
+---------
+word: kwaye
+common Prefix: kway
+current Suffix: e
+---------
+current state num incoming edges: 1 : 1
+current state num incoming edges: 2 : 1
+current state num incoming edges: 3 : 1
+current state num incoming edges: 4 : 1
+came from here
+ i am 4
+all: a
+e
+all: e
+STATTE 4:::::::e
+edge: e
+childstate: 6 hash: 1
+EDGES OF: 4 : null
+EDGES OF: 4 : null
+removing link frommmmssss 4 to 6 with e
+removing from registry: 4
+putting in registry hash222: 0a5e5 from registry with node: 4
+EDGES OFf: 4 : null
+came from here2
+removing from registryyyyyyyy: 4
+ i am 3
+y
+all: y
+STATTE 3:::::::y
+edge: y
+childstate: 4 hash: 0a5e5
+registering state: 4 with hash 0a5e5
+putting in registry hash111: 0a5e5 from registry with node: 4
+removing from registry: 3
+putting in registry hash2232: 0y4 from registry with node: 3
+kwayena
+WORD LENGTH: 7
+---------
+word: kwayena
+common Prefix: kwaye
+current Suffix: na
+---------
+current state num incoming edges: 1 : 1
+current state num incoming edges: 2 : 1
+current state num incoming edges: 3 : 1
+current state num incoming edges: 4 : 1
+current state num incoming edges: 5 : 2
+came from here
+7
+lastlastlastlast state: 7
+HERERERERERER: n
+ i am 8
+a
+all: a
+STATTE 8:::::::a
+edge: a
+childstate: 9 hash: 1
+EDGES OF: 8 : null
+removing link frommmmssss 8 to 9 with a
+EDGES OFf: 8 : null
+ i am 7
+n
+all: n
+STATTE 7:::::::n
+edge: n
+childstate: 8 hash: 0a5
+registering state: 8 with hash 0a5
+putting in registry hash111: 0a5 from registry with node: 8
+current state num incoming edges: 1 : 1
+current state num incoming edges: 2 : 1
+current state num incoming edges: 3 : 1
+current state num incoming edges: 4 : 1
+current state num incoming edges: 5 : 3
+upper index: 4
+current index: 5
+before next magic loop: w
+sending to next magic loop: 2
+before next magic loop: a
+sending to next magic loop: 3
+before next magic loop: y
+sending to next magic loop: 4
+before next magic loop: e
+sending to next magic loop: 5
+WHAT IS CURRENT INDEX HERE: 5
+WHAT IS NEXT STEP: e
+WHAT IS LAST STATE: 7
+edge e
+removing link from 4 to 5 on a e
+adding link from 4 to 7 on a e
+removing from registry: 4
+putting in registry hash222: 0e7 from registry with node: 4
+came from here2
+ i am 4
+e
+all: e
+STATTE 4:::::::e
+edge: e
+childstate: 7 hash: 1n8
+registering state: 7 with hash 1n8
+putting in registry hash111: 1n8 from registry with node: 7
+removing from registry: 4
+putting in registry hash2232: 0e7 from registry with node: 4
+kwayena
+kwaye
+Number of words in the output language: 2
+Number of words in the input language: 3
+Number of nodes in the minimal automaton: 7

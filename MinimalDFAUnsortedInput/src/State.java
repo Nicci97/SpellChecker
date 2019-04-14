@@ -31,11 +31,27 @@ public class State {
 	}
 	
 	public void removeLink(State s, Character ch) {
-		childrenCount--;
-		outgoingEdges.remove(s.nameNumber);
-		s.numberIncomingEdges--;
-		lastLinkAdded = null;
-		charOfLastLinkAdded = null;
+		if (outgoingEdges.get(s.nameNumber).getEdgeChars().size() == 1) {
+			childrenCount--;
+			outgoingEdges.remove(s.nameNumber);
+			s.numberIncomingEdges--;
+			lastLinkAdded = null;
+			charOfLastLinkAdded = null;
+		} else if (outgoingEdges.get(s.nameNumber).getEdgeChars().size() > 1) {
+			ArrayList<Character> edgeChars = outgoingEdges.get(s.nameNumber).getEdgeChars();
+			int indexToRemove = edgeChars.indexOf(ch);
+			edgeChars.remove(indexToRemove);
+			s.numberIncomingEdges--;
+			lastLinkAdded = null;
+			charOfLastLinkAdded = null;
+		} else {
+			childrenCount--;
+			outgoingEdges.remove(s.nameNumber);
+			s.numberIncomingEdges--;
+			lastLinkAdded = null;
+			charOfLastLinkAdded = null;
+		}
+
 	}
 	
 	public void addLink(State s, Character ch) {

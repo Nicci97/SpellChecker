@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a5c6adc7-dcda-423d-b481-5bb16c2752f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/src/AutomatonBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/smallIsiXhosa.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/smallIsiXhosa.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpellChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpellChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpellChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpellChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,10 +24,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="815" column="40" lean-forward="true" selection-start-line="815" selection-start-column="40" selection-end-line="815" selection-end-column="40" />
+            <state relative-caret-position="326">
+              <caret line="254" column="43" lean-forward="true" selection-start-line="254" selection-start-column="43" selection-end-line="254" selection-end-column="43" />
               <folding>
-                <element signature="e#47341#47342#0" expanded="true" />
+                <element signature="e#53247#53248#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -30,8 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="38" column="59" lean-forward="true" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+            <state relative-caret-position="465">
+              <caret line="34" column="63" lean-forward="true" selection-start-line="34" selection-start-column="63" selection-end-line="34" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/State.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="49">
-              <caret line="10" column="52" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="52" />
+            <state relative-caret-position="221">
+              <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -75,14 +81,24 @@
       <find>new State</find>
       <find>loopForRR</find>
       <find>magic</find>
-      <find>registry.put</find>
       <find>clone</find>
       <find>replaceOrRegister</find>
-      <find>replace</find>
       <find>registry.replace</find>
       <find>makeFinal</find>
       <find>register</find>
       <find>System.out</find>
+      <find>filePath</find>
+      <find>registry.re</find>
+      <find>registry.remo</find>
+      <find>removing from registry</find>
+      <find>firstState</find>
+      <find>removeFromRegister</find>
+      <find>registry.put</find>
+      <find>addLink</find>
+      <find>removeLink</find>
+      <find>hash222</find>
+      <find>replace</find>
+      <find>frommmm</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -92,8 +108,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/AutomatonBuilder.java" />
-        <option value="$PROJECT_DIR$/src/State.java" />
         <option value="$PROJECT_DIR$/src/SpellChecker.java" />
+        <option value="$PROJECT_DIR$/src/State.java" />
         <option value="$PROJECT_DIR$/src/AutomatonBuilder.java" />
       </list>
     </option>
@@ -131,7 +147,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555264505575" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555273140341" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -207,29 +223,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="10" column="52" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="38" column="59" lean-forward="true" selection-start-line="38" selection-start-column="59" selection-end-line="38" selection-end-column="59" />
+        <state relative-caret-position="465">
+          <caret line="34" column="63" lean-forward="true" selection-start-line="34" selection-start-column="63" selection-end-line="34" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="815" column="40" lean-forward="true" selection-start-line="815" selection-start-column="40" selection-end-line="815" selection-end-column="40" />
+        <state relative-caret-position="326">
+          <caret line="254" column="43" lean-forward="true" selection-start-line="254" selection-start-column="43" selection-end-line="254" selection-end-column="43" />
           <folding>
-            <element signature="e#47341#47342#0" expanded="true" />
+            <element signature="e#53247#53248#0" expanded="true" />
           </folding>
         </state>
       </provider>
