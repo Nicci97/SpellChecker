@@ -15,6 +15,12 @@ public class SpellChecker {
         System.out.println("membership ons: " + automaton.membership("ons"));
         System.out.println("membership onss: " + automaton.membership("onss"));
         System.out.println("membership e: " + automaton.membership("e"));
+        automaton.addNewWord("onss");
+        System.out.println("membership a: " + automaton.membership("a"));
+        System.out.println("membership assent: " + automaton.membership("assent"));
+        System.out.println("membership ons: " + automaton.membership("ons"));
+        System.out.println("membership onss: " + automaton.membership("onss"));
+        System.out.println("membership e: " + automaton.membership("e"));
 
 
 //        File f1=new File(args[1]); //Creation of File Descriptor for input file

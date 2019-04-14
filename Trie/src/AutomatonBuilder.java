@@ -303,4 +303,13 @@ public class AutomatonBuilder {
         return found;
     }
 
+    public void addNewWord(String w) {
+        word = w;
+        String commonPrefix;
+        String currentSuffix;
+        commonPrefix = findCommonPrefix();
+        currentSuffix = word.substring(commonPrefix.length());
+        addSuffix(currentSuffix);
+    }
+
 }
