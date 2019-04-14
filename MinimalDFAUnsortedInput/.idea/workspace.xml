@@ -2,24 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5c6adc7-dcda-423d-b481-5bb16c2752f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/MinimalDFASortedInput.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/MinimalDFASortedInput.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/AutomatonBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/AutomatonBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/EdgeInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/EdgeInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/State.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/.idea/Trie.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/.idea/Trie.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/AutomatonBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/AutomatonBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/EdgeInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/EdgeInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/State.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/output.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,12 +16,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="634">
-              <caret line="355" column="25" selection-start-line="355" selection-start-column="25" selection-end-line="355" selection-end-column="25" />
+            <state relative-caret-position="350">
+              <caret line="641" column="55" selection-start-line="641" selection-start-column="55" selection-end-line="641" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -41,14 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/State.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="23" column="25" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="25" />
-              <folding>
-                <element signature="e#596#597#0" expanded="true" />
-                <element signature="e#615#616#0" expanded="true" />
-                <element signature="e#1597#1598#0" expanded="true" />
-                <element signature="e#1609#1610#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="135">
+              <caret line="10" column="52" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -57,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/src/EdgeInfo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+              <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
               <folding>
                 <element signature="e#445#446#0" expanded="true" />
                 <element signature="e#478#479#0" expanded="true" />
@@ -71,6 +53,15 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>new State</find>
+      <find>loopForRR</find>
+      <find>magic</find>
+      <find>registry.put</find>
+      <find>clone</find>
+      <find>replaceOrRegister</find>
+      <find>replace</find>
+      <find>registry.replace</find>
+      <find>makeFinal</find>
+      <find>register</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -97,8 +88,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -115,10 +104,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555014159309" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555197945375" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -152,16 +143,13 @@
     <frame x="67" y="25" width="1533" height="875" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24949563" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25958306" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -169,65 +157,45 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Maven" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/State.java">
+    <entry file="file://$PROJECT_DIR$/State.java" />
+    <entry file="file://$PROJECT_DIR$/EdgeInfo.java" />
+    <entry file="file://$PROJECT_DIR$/AutomatonBuilder.java" />
+    <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="350">
+          <caret line="641" column="55" selection-start-line="641" selection-start-column="55" selection-end-line="641" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EdgeInfo.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AutomatonBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/State.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2790">
-          <caret line="197" selection-start-line="197" selection-end-line="197" />
+        <state relative-caret-position="135">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EdgeInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
           <folding>
             <element signature="e#445#446#0" expanded="true" />
             <element signature="e#478#479#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="25" />
-          <folding>
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#615#616#0" expanded="true" />
-            <element signature="e#1597#1598#0" expanded="true" />
-            <element signature="e#1609#1610#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="355" column="25" selection-start-line="355" selection-start-column="25" selection-end-line="355" selection-end-column="25" />
         </state>
       </provider>
     </entry>
