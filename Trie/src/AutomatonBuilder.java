@@ -213,33 +213,6 @@ public class AutomatonBuilder {
         debug("exit addSuffix");
     }
 
-//    public static void buildAutomaton(String filePath) {
-//        debug("enter main");
-//        String commonPrefix;
-//        String currentSuffix;
-//
-//        //Create the start state
-//        startState = new State(0, true);
-//        states.put(startState.getNameNumber(), startState);
-//
-//        //set up reader for input of asciibetically sorted dictionary in the format one word per line
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        word = br.readLine();
-//        int count = 0;
-//        while (word != null) {
-//            count++;
-//            commonPrefix = findCommonPrefix();
-//            currentSuffix = word.substring(commonPrefix.length());
-//            addSuffix(currentSuffix);
-//            word = br.readLine();
-//        }
-//        debug("exit main");
-//
-//        doDFS();
-//        System.out.println("Number of words in the input language: " + count);
-//        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
-//    }
-
     public void create(String filePath) throws IOException {
         debug("enter main");
         String commonPrefix;

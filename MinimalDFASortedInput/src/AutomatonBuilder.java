@@ -3,10 +3,9 @@
  * ASCII value comparison function found at https://stackoverflow.com/questions/26553889/comparing-2-strings-by-ascii-values-in-java
  */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class AutomatonBuilder {
@@ -32,7 +31,7 @@ public class AutomatonBuilder {
         System.out.println(str);
     }
 
-    public static void doDFS() {
+    public static ArrayList<String> doDFS() {
         ArrayList<String> results = new ArrayList<>();
         ArrayList<String> results2 = new ArrayList<>();
 
@@ -50,6 +49,7 @@ public class AutomatonBuilder {
             debug2(results.get(i));
         }
         System.out.println("Number of words in the output language: " + results.size());
+        return results;
     }
 
     public static ArrayList<String> doDFSnextStep(State state) {
@@ -256,7 +256,46 @@ public class AutomatonBuilder {
         debug("exit addSuffix");
     }
 
-    public static void main(String[] args) throws IOException {
+//    public static void main(String[] args) throws IOException {
+//        debug("enter main");
+//        String commonPrefix;
+//        String currentSuffix;
+//
+//        //Create the start state
+//        startState = new State(0, true);
+//        states.put(startState.getNameNumber(), startState);
+//
+//        //set up reader for input of asciibetically sorted dictionary in the format one word per line
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        word = br.readLine();
+//        int count = 0;
+//        while (word != null) {
+//            count++;
+//            commonPrefix = findCommonPrefix();
+//            currentSuffix = word.substring(commonPrefix.length());
+//            if (states.get(lastState).hasChildren()) {
+//                State lastStateState = states.get(lastState);
+//                State mergeState = replaceOrRegister(states.get(lastState));
+//                State childState = lastStateState.getLastLinkAdded();
+//                if (mergeState != null) {
+//                    Character charOfLastLinkAdded = lastStateState.getCharOfLastLinkAdded();
+//                    states.remove(childState.getNameNumber());
+//                    lastStateState.removeLink(childState, lastStateState.getCharOfLastLinkAdded());
+//                    lastStateState.addLink(mergeState, charOfLastLinkAdded);
+//                }
+//            }
+//            addSuffix(currentSuffix);
+//            word = br.readLine();
+//        }
+//        replaceOrRegister(startState);
+//        debug("exit main");
+//
+//        doDFS();
+//        System.out.println("Number of words in the input language: " + count);
+//        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
+//    }
+
+    public void create(String filePath) throws IOException {
         debug("enter main");
         String commonPrefix;
         String currentSuffix;
@@ -265,8 +304,9 @@ public class AutomatonBuilder {
         startState = new State(0, true);
         states.put(startState.getNameNumber(), startState);
 
-        //set up reader for input of asciibetically sorted dictionary in the format one word per line
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        File initialFile = new File(filePath);
+        InputStream targetStream = new FileInputStream(initialFile);
+        BufferedReader br = new BufferedReader(new InputStreamReader(targetStream));
         word = br.readLine();
         int count = 0;
         while (word != null) {
@@ -293,6 +333,92 @@ public class AutomatonBuilder {
         doDFS();
         System.out.println("Number of words in the input language: " + count);
         System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
+    }
+
+    public boolean membership(String word) {
+        int index = 0;
+        boolean found = false;
+        if (index == word.length()) {
+            return true;
+        }
+        for (EdgeInfo edgeInfo: startState.getEdges().values()) {
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
+                    State nextState = edgeInfo.getEdgeToState();
+                    found = membershipNextStep(nextState, word, index+1);
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    public boolean membershipNextStep(State state, String word, int index) {
+        boolean found = false;
+        if (index == word.length()) {
+            return true;
+        }
+        for (EdgeInfo edgeInfo: state.getEdges().values()) {
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
+                    State nextState = edgeInfo.getEdgeToState();
+                    found = membershipNextStep(nextState, word, index+1);
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    public String getCorrection(String word) {
+        ArrayList<String> results = new ArrayList<>();
+        results = doDFS();
+        String newCorrection = "";
+        int bestDistance = getLevenshteinDistance(word, results.get(0));;
+        int size = results.size();
+        for (int i = 1; i < size; i++) {
+            int levenshteinDistance = getLevenshteinDistance(word, results.get(i));
+            if (levenshteinDistance < bestDistance) {
+                bestDistance = levenshteinDistance;
+                newCorrection = results.get(i);
+            }
+        }
+        System.out.println("levenstein distance to return with " + newCorrection + " " + bestDistance);
+        return newCorrection;
+    }
+
+    /* derived from https://www.baeldung.com/java-levenshtein-distance */
+    public int getLevenshteinDistance(String wrongWord, String actualWord) {
+        int[][] dp = new int[wrongWord.length() + 1][actualWord.length() + 1];
+
+        for (int i = 0; i <= wrongWord.length(); i++) {
+            for (int j = 0; j <= actualWord.length(); j++) {
+                if (i == 0) {
+                    dp[i][j] = j;
+                }
+                else if (j == 0) {
+                    dp[i][j] = i;
+                }
+                else {
+                    dp[i][j] = min(dp[i - 1][j - 1]  + costOfSubstitution(wrongWord.charAt(i - 1), actualWord.charAt(j - 1)),
+                            dp[i - 1][j] + 1,
+                            dp[i][j - 1] + 1);
+                }
+            }
+        }
+
+        return dp[wrongWord.length()][actualWord.length()];
+    }
+
+    public static int costOfSubstitution(char a, char b) {
+        return a == b ? 0 : 1;
+    }
+
+    public static int min(int... numbers) {
+        return Arrays.stream(numbers)
+                .min().orElse(Integer.MAX_VALUE);
     }
 
 }
