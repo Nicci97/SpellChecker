@@ -10,7 +10,9 @@ import java.util.HashMap;
 
 public class AutomatonBuilder {
 
-    private static HashMap<String, State> registry = new HashMap<>();
+//    private static HashMap<String, State> registry = new HashMap<>();
+    private static HashMap<String, State> registry1 = new HashMap<>();
+    private static HashMap<State, String> registry2 = new HashMap<>();
     private static String word = null;
     private static State startState = null;
     private static State lastState = startState;
@@ -199,9 +201,8 @@ public class AutomatonBuilder {
         }
         if (childState != null) {
             String hash = getHash(childState);
-            if (registry.get(hash) != null) {
-
-                State mergeState = registry.get(hash);
+            if (registry1.get(hash) != null) {
+                State mergeState = registry1.get(hash);
                 boolean createdLoop = false;
                 for (EdgeInfo edgeInfo: mergeState.getEdges().values()) {
                     State pointingToState = edgeInfo.getEdgeToState();
@@ -215,24 +216,49 @@ public class AutomatonBuilder {
                 }
 
 
-                for (String currentHash: registry.keySet()) {
-                    if (registry.get(currentHash).getNameNumber() == state.getNameNumber()) {
-                        registry.remove(currentHash);
-
-                        hash = getHash(state);
-                        registry.put(hash, state);
-                                break;
-                    }
+                if (registry2.get(state) != null) {
+                    String oldHash = registry2.get(state);
+                    registry1.remove(oldHash);
+                    String newHash = getHash(state);
+                    registry1.put(newHash, state);
+                    registry2.replace(state, newHash);
+//                } else {
+//                    System.out.println("what equal to null, what now?");
                 }
+//                for (String currentHash: registry.keySet()) {
+//                    if (registry.get(currentHash).getNameNumber() == state.getNameNumber()) {
+//                        registry.remove(currentHash);
+//
+//                        hash = getHash(state);
+//                        registry.put(hash, state);
+//                        break;
+//                    }
+//                }
+
+
+
+
             } else {
                 hash = getHash(childState);
-                for (String h: registry.keySet()) {
-                    if (registry.get(h).getNameNumber() == childState.getNameNumber()) {
-                        registry.remove(h);
-                        break;
-                    }
+                if (registry2.get(childState) != null) {
+                    String hashToRemove = registry2.get(childState);
+                    registry1.remove(hashToRemove);
+                    registry1.put(hash, childState);
+                    registry2.replace(childState, hash);
+                } else {
+                    registry1.put(hash, childState);
+                    registry2.put(childState, hash);
+//                    System.out.println("what equal to null, what now?");
                 }
-                registry.put(hash, childState);
+
+//                hash = getHash(childState);
+//                for (String h: registry.keySet()) {
+//                    if (registry.get(h).getNameNumber() == childState.getNameNumber()) {
+//                        registry.remove(h);
+//                        break;
+//                    }
+//                }
+//                registry.put(hash, childState);
             }
         }
         debug("exit replaceOrRegister");
@@ -426,13 +452,22 @@ public class AutomatonBuilder {
     }
 
     private static void removeFromRegister(State state) {
-        String hashToRemove = null;
-        for (String h: registry.keySet()) {
-            if (registry.get(h).getNameNumber() == state.getNameNumber()) {
-                hashToRemove = h;
-            }
+        if (registry2.get(state) != null) {
+            String hashToRemove = registry2.get(state);
+            registry1.remove(hashToRemove);
+            registry2.remove(state);
+//        } else {
+//            System.out.println("what equal to null, what now?");
         }
-        registry.remove(hashToRemove);
+
+
+//        String hashToRemove = null;
+//        for (String h: registry.keySet()) {
+//            if (registry.get(h).getNameNumber() == state.getNameNumber()) {
+//                hashToRemove = h;
+//            }
+//        }
+//        registry.remove(hashToRemove);
 
     }
 
@@ -508,14 +543,28 @@ public class AutomatonBuilder {
                 if (lastState != null) {
                     currentState.removeLink(childState, edge);
                     currentState.addLink(lastState, edge);
-                    String hash = getHash(currentState);
-                    for (String currentHash: registry.keySet()) {
-                        if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
-                            registry.remove(currentHash);
-                            registry.put(hash, currentState);
-                            break;
-                        }
+
+                    String newHash = getHash(currentState);
+                    if (registry2.get(currentState) != null) {
+                        String oldHash = registry2.get(currentState);
+                        registry1.remove(oldHash);
+                        registry1.put(newHash, currentState);
+                        registry2.replace(currentState, newHash);
+//                    } else {
+//                        System.out.println("what equal to null, what now?");
                     }
+
+
+
+
+//                    String hash = getHash(currentState);
+//                    for (String currentHash: registry.keySet()) {
+//                        if (registry.get(currentHash).getNameNumber() == currentState.getNameNumber()) {
+//                            registry.remove(currentHash);
+//                            registry.put(hash, currentState);
+//                            break;
+//                        }
+//                    }
                 }
             } else {
                 currentIndex = commonPrefix.length();
@@ -544,15 +593,30 @@ public class AutomatonBuilder {
 
             }
             if (!changed && (currentIndex > 0)) {
-                String hash = getHash(currentState);
-                for (String h: registry.keySet()) {
-                    if (registry.get(h).getNameNumber() == currentState.getNameNumber()) {
-                        registry.remove(h);
-                        break;
-                    }
+
+                String newHash = getHash(currentState);
+                if (registry2.get(currentState) != null) {
+                    String oldHash = registry2.get(currentState);
+                    registry1.remove(oldHash);
+                    registry1.put(newHash, currentState);
+                    registry2.replace(currentState, newHash);
+                } else {
+                    registry1.put(newHash, currentState);
+                    registry2.put(currentState, newHash);
+//                    System.out.println("what equal to null, what now?");
                 }
 
-                registry.put(hash, currentState);
+
+
+//                String hash = getHash(currentState);
+//                for (String h: registry.keySet()) {
+//                    if (registry.get(h).getNameNumber() == currentState.getNameNumber()) {
+//                        registry.remove(h);
+//                        break;
+//                    }
+//                }
+//
+//                registry.put(hash, currentState);
             }
             word = br.readLine();
         }
