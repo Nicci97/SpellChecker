@@ -19,10 +19,7 @@ public class AutomatonBuilder {
     private static State firstState = null;
     private static int currentIndex = 0;
     private static State currentState = null;
-
-    private static void debug2(String str) {
-        System.out.println(str);
-    }
+    private static int numWordsOutput;
 
     private static ArrayList<String> doDFS() {
         ArrayList<String> results = new ArrayList<>();
@@ -37,12 +34,7 @@ public class AutomatonBuilder {
                 }
             }
         }
-
-        for (int i = 0; i < results.size(); i++) {
-            debug2(results.get(i));
-        }
-
-        System.out.println("Number of words in the output language: " + results.size());
+        numWordsOutput = results.size();
         return results;
     }
 
@@ -386,9 +378,6 @@ public class AutomatonBuilder {
 
     public void create(String filePath) throws IOException {
         long start = System.currentTimeMillis();
-
-        String commonPrefix;
-        String currentSuffix;
         startState = new State(0, true);
 
         File initialFile = new File(filePath);
@@ -397,15 +386,70 @@ public class AutomatonBuilder {
         word = br.readLine();
         int count = 0;
         while (word != null) {
-            lastState = startState;
-            firstState = null;
             count++;
-            commonPrefix = findCommonPrefix();
-            currentSuffix = word.substring(commonPrefix.length());
-            if (currentSuffix.equals("") && lastState.isAcceptState()) {
-                word = br.readLine();
-                continue;
+            addNewWord(word);
+            word = br.readLine();
+        }
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+
+        doDFS();
+
+        System.out.println("Number of words in the input language: " + count);
+        System.out.println("Number of words in the output language: " + numWordsOutput);
+        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
+        System.out.println("The program took " + timeElapsed/100 + " seconds to run");
+    }
+
+    public boolean membership(String word) {
+        int index = 0;
+        boolean found = false;
+        if (index == word.length()) {
+            return true;
+        }
+        for (EdgeInfo edgeInfo: startState.getEdges().values()) {
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
+                    State nextState = edgeInfo.getEdgeToState();
+                    found = membershipNextStep(nextState, word, index+1);
+                    break;
+                }
             }
+        }
+        return found;
+    }
+
+    private boolean membershipNextStep(State state, String word, int index) {
+        boolean found = false;
+        if (index == word.length() && state.isAcceptState()) {
+            return true;
+        } else if (index == word.length()) {
+            return false;
+        }
+        for (EdgeInfo edgeInfo: state.getEdges().values()) {
+            int numChars = edgeInfo.getEdgeChars().size();
+            for (int k = 0; k < numChars; k++) {
+                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
+                    State nextState = edgeInfo.getEdgeToState();
+                    found = membershipNextStep(nextState, word, index+1);
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    public void addNewWord(String word) {
+        String commonPrefix;
+        String currentSuffix;
+        lastState = startState;
+        firstState = null;
+        commonPrefix = findCommonPrefix();
+        currentSuffix = word.substring(commonPrefix.length());
+        if (currentSuffix.equals("") && lastState.isAcceptState()) {
+            // do nothing
+        } else {
             firstState(commonPrefix);
             if (firstState != null) {
                 lastState = clone(lastState);
@@ -485,74 +529,25 @@ public class AutomatonBuilder {
                     registry2.put(currentState, newHash);
                 }
             }
-            word = br.readLine();
         }
-        long finish = System.currentTimeMillis();
-        long timeElapsed = finish - start;
 
-        doDFS();
-
-        System.out.println("Number of words in the input language: " + count);
-        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
-        System.out.println("The program took " + timeElapsed/100 + " seconds to run");
     }
 
-    public boolean membership(String word) {
-        int index = 0;
-        boolean found = false;
-        if (index == word.length()) {
-            return true;
-        }
-        for (EdgeInfo edgeInfo: startState.getEdges().values()) {
-            int numChars = edgeInfo.getEdgeChars().size();
-            for (int k = 0; k < numChars; k++) {
-                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
-                    State nextState = edgeInfo.getEdgeToState();
-                    found = membershipNextStep(nextState, word, index+1);
-                    break;
-                }
-            }
-        }
-        return found;
-    }
-
-    private boolean membershipNextStep(State state, String word, int index) {
-        boolean found = false;
-        if (index == word.length() && state.isAcceptState()) {
-            return true;
-        } else if (index == word.length()) {
-            return false;
-        }
-        for (EdgeInfo edgeInfo: state.getEdges().values()) {
-            int numChars = edgeInfo.getEdgeChars().size();
-            for (int k = 0; k < numChars; k++) {
-                if (edgeInfo.getEdgeChars().get(k).equals(word.charAt(index))) {
-                    State nextState = edgeInfo.getEdgeToState();
-                    found = membershipNextStep(nextState, word, index+1);
-                    break;
-                }
-            }
-        }
-        return found;
-    }
-
-    public void addNewWord(String w) {
-    }
-
-    public String getCorrection(String word) {
+    public String[] getCorrection(String word) {
         ArrayList<String> results;
         results = doDFS();
-        String newCorrection = "";
+        String[] newCorrection = {"", "", ""};
         int bestDistance = getLevenshteinDistance(word, results.get(0));
         int size = results.size();
         for (int i = 1; i < size; i++) {
             int levenshteinDistance = getLevenshteinDistance(word, results.get(i));
             if (levenshteinDistance < bestDistance) {
                 bestDistance = levenshteinDistance;
-                newCorrection = results.get(i);
+                newCorrection[2] = newCorrection[1];
+                newCorrection[1] = newCorrection[0];
+                newCorrection[0] = results.get(i);
             }
         }
-        System.out.println("levenstein distance to return with " + newCorrection + " " + bestDistance);
         return newCorrection;
     }
 

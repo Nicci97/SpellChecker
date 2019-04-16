@@ -4,11 +4,11 @@
     <list default="true" id="cf7d0d38-f2c8-4ab8-a580-c96e29adec2c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SpellChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpellChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SpellChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpellChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/AutomatonBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/AutomatonBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/SpellChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/SpellChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/SpellChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/SpellChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,7 +23,7 @@
         <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="244">
-              <caret line="241" column="29" selection-start-line="241" selection-start-column="29" selection-end-line="241" selection-end-column="29" />
+              <caret line="241" column="29" lean-forward="true" selection-start-line="241" selection-start-column="29" selection-end-line="241" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -164,7 +164,7 @@
     <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
-          <caret line="241" column="29" selection-start-line="241" selection-start-column="29" selection-end-line="241" selection-end-column="29" />
+          <caret line="241" column="29" lean-forward="true" selection-start-line="241" selection-start-column="29" selection-end-line="241" selection-end-column="29" />
         </state>
       </provider>
     </entry>
