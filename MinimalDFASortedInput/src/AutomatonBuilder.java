@@ -297,6 +297,7 @@ public class AutomatonBuilder {
 
     public void create(String filePath) throws IOException {
         debug("enter main");
+        long start = System.currentTimeMillis();
         String commonPrefix;
         String currentSuffix;
 
@@ -330,9 +331,13 @@ public class AutomatonBuilder {
         replaceOrRegister(startState);
         debug("exit main");
 
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+
         doDFS();
         System.out.println("Number of words in the input language: " + count);
         System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
+        System.out.println("The program took " + timeElapsed/100 + " seconds to run");
     }
 
     public boolean membership(String word) {

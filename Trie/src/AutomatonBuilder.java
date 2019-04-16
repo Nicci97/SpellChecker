@@ -11,29 +11,18 @@ import java.util.HashMap;
 public class AutomatonBuilder {
 
     private static HashMap<Integer, State> states = new HashMap<>();
-    private static HashMap<String, State> registry = new HashMap<>();
     private static String word = null;
     private static int lastState = 0;
     private static State startState = null;
     private static int newStateCount = 1;
     private static String suffexToAdd;
     private static int countGlobal = 0;
+    private static int numWordsInOutput = 0;
 
-    public static void debug(String str) {
-//		System.out.println(str);
-    }
-
-    public static void debug2(String str) {
-        System.out.println(str);
-    }
-
-    public static void debug3(String str) {
-        System.out.println(str);
-    }
 
     public static ArrayList<String> doDFS() {
         ArrayList<String> results = new ArrayList<>();
-        ArrayList<String> results2 = new ArrayList<>();
+        ArrayList<String> results2;
 
         for (EdgeInfo edgeInfo: startState.getEdges().values()) {
             results2 = doDFSnextStep(edgeInfo.getEdgeToState());
@@ -44,12 +33,8 @@ public class AutomatonBuilder {
                 }
             }
         }
+        numWordsInOutput = results.size();
 
-        for (int i = 0; i < results.size(); i++) {
-            debug2(results.get(i));
-        }
-
-        System.out.println("Number of words in the output language: " + results.size());
         return results;
     }
 
@@ -77,13 +62,11 @@ public class AutomatonBuilder {
     }
 
     public static String nextStep(State nextState, int wordIndex, int wordLength) {
-        debug("enter nextStep");
         String commonPrefixSegment = "";
         boolean foundNewState = false;
-        char nextLetter = '\u0000';
+        char nextLetter;
         for (EdgeInfo edgeInfo : nextState.getEdges().values()) {
             nextLetter = word.charAt(wordIndex);
-
             int numChars = edgeInfo.getEdgeChars().size();
             for (int k = 0; k < numChars; k++) {
                 if (edgeInfo.getEdgeChars().get(k).equals(nextLetter)) {
@@ -102,23 +85,19 @@ public class AutomatonBuilder {
                 suffexToAdd = word.substring(wordIndex+1, word.length());
             }
         }
-        debug("exit nextStep");
         return commonPrefixSegment;
     }
 
     public static String findCommonPrefix() {
-        debug("enter findCommonPrefix");
         String commonPrefix = "";
 
         int wordLength = word.length();
         if (wordLength == 0) {
             System.out.println("error - empty work.. issue");
         }
-
         boolean foundNewState = false;
         for (EdgeInfo edgeInfo : startState.getEdges().values()) {
             char firstLetter = word.charAt(0);
-
             int numChars = edgeInfo.getEdgeChars().size();
             for (int k = 0; k < numChars; k++) {
                 if (edgeInfo.getEdgeChars().get(k).equals(firstLetter)) {
@@ -134,66 +113,24 @@ public class AutomatonBuilder {
         if (!foundNewState) {
             lastState = 0;
         }
-
-        // update last state in here
-        debug("exit findCommonPrefix");
         return commonPrefix;
     }
 
-    // This method compares two strings
-    // lexicographically without using
-    // library functions
-    public static int stringCompare(String str1, String str2)
-    {debug("enter stringCompare");
-
-        int l1 = str1.length();
-        int l2 = str2.length();
-        int lmin = Math.min(l1, l2);
-
-        for (int i = 0; i < lmin; i++) {
-            int str1_ch = (int)str1.charAt(i);
-            int str2_ch = (int)str2.charAt(i);
-
-            if (str1_ch != str2_ch) {
-                debug("exit stringCompare");
-                return str1_ch - str2_ch;
-            }
-        }
-
-        // Edge case for strings like
-        // String 1="Geeks" and String 2="Geeksforgeeks"
-        if (l1 != l2) {
-            debug("exit stringCompare");
-            return l1 - l2;
-        }
-
-        // If none of the above conditions is true,
-        // it implies both the strings are equal
-        else {
-            debug("exit stringCompare");
-            return 0;
-        }
-    }
-
     public static void addSuffixNextStep(State s, int index, int suffixlength, String currentSuffix) {
-        debug("enter addSuffixNextStep");
         State newState;
         if (index == (suffixlength-1)) {
             newState = new State(newStateCount++, true);
             states.put(newState.getNameNumber(), newState);
             s.addLink(newState, currentSuffix.charAt(index));
-            debug("exit addSuffixNextStep");
         } else {
             newState = new State(newStateCount++, false);
             states.put(newState.getNameNumber(), newState);
             s.addLink(newState, currentSuffix.charAt(index));
             addSuffixNextStep(newState, index+1, suffixlength, currentSuffix);
         }
-        debug("exit addSuffixNextStep");
     }
 
     public static void addSuffix(String currentSuffix) {
-        debug("enter addSuffix");
         int suffixLength = currentSuffix.length();
         if (suffixLength != 0) {
             State newState;
@@ -210,13 +147,10 @@ public class AutomatonBuilder {
                 addSuffixNextStep(newState, 1, suffixLength, currentSuffix);
             }
         }
-        debug("exit addSuffix");
     }
 
     public void create(String filePath) throws IOException {
-        debug("enter main");
-        String commonPrefix;
-        String currentSuffix;
+        long start = System.currentTimeMillis();
 
         //Create the start state
         startState = new State(0, true);
@@ -230,16 +164,20 @@ public class AutomatonBuilder {
         int count = 0;
         while (word != null) {
             count++;
-            commonPrefix = findCommonPrefix();
-            currentSuffix = word.substring(commonPrefix.length());
-            addSuffix(currentSuffix);
+            addNewWord(word);
             word = br.readLine();
         }
-        debug("exit main");
+
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
 
         doDFS();
+        System.out.println("-----------Automaton construction information--------------");
         System.out.println("Number of words in the input language: " + count);
-        System.out.println("Number of nodes in the minimal automaton: " + countGlobal);
+        System.out.println("Number of words in the output language: " + numWordsInOutput);
+        System.out.println("Number of nodes in the trie: " + countGlobal);
+        System.out.println("The program took " + timeElapsed/100 + " seconds to construct the automaton");
+        System.out.println("-----------------------------------------------------------");
     }
 
     public boolean membership(String word) {
@@ -263,8 +201,10 @@ public class AutomatonBuilder {
 
     public boolean membershipNextStep(State state, String word, int index) {
         boolean found = false;
-        if (index == word.length()) {
+        if (index == word.length() && state.isAcceptState()) {
             return true;
+        } else if (index == word.length()) {
+            return false;
         }
         for (EdgeInfo edgeInfo: state.getEdges().values()) {
             int numChars = edgeInfo.getEdgeChars().size();
@@ -288,20 +228,21 @@ public class AutomatonBuilder {
         addSuffix(currentSuffix);
     }
 
-    public String getCorrection(String word) {
-        ArrayList<String> results = new ArrayList<>();
+    public String[] getCorrection(String word) {
+        ArrayList<String> results;
         results = doDFS();
-        String newCorrection = "";
-        int bestDistance = getLevenshteinDistance(word, results.get(0));;
+        String[] newCorrection = {"", "", ""};
+        int bestDistance = getLevenshteinDistance(word, results.get(0));
         int size = results.size();
         for (int i = 1; i < size; i++) {
             int levenshteinDistance = getLevenshteinDistance(word, results.get(i));
             if (levenshteinDistance < bestDistance) {
                 bestDistance = levenshteinDistance;
-                newCorrection = results.get(i);
+                newCorrection[2] = newCorrection[1];
+                newCorrection[1] = newCorrection[0];
+                newCorrection[0] = results.get(i);
             }
         }
-        System.out.println("levenstein distance to return with " + newCorrection + " " + bestDistance);
         return newCorrection;
     }
 
