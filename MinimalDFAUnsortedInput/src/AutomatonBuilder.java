@@ -518,8 +518,10 @@ public class AutomatonBuilder {
 
     private boolean membershipNextStep(State state, String word, int index) {
         boolean found = false;
-        if (index == word.length()) {
+        if (index == word.length() && state.isAcceptState()) {
             return true;
+        } else if (index == word.length()) {
+            return false;
         }
         for (EdgeInfo edgeInfo: state.getEdges().values()) {
             int numChars = edgeInfo.getEdgeChars().size();

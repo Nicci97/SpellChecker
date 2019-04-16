@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5c6adc7-dcda-423d-b481-5bb16c2752f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/src/AutomatonBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/src/AutomatonBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/src/SpellChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/src/SpellChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFASortedInput/src/SpellChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFASortedInput/src/SpellChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/SpellChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/SpellChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/SpellChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/SpellChecker.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="496" column="86" lean-forward="true" selection-start-line="496" selection-start-column="8" selection-end-line="496" selection-end-column="86" />
+            <state relative-caret-position="432">
+              <caret line="524" column="9" selection-start-line="524" selection-start-column="9" selection-end-line="524" selection-end-column="9" />
               <folding>
                 <element signature="e#23143#23144#0" expanded="true" />
                 <element signature="e#23180#23181#0" expanded="true" />
@@ -121,12 +117,12 @@
       <list>
         <option value="$PROJECT_DIR$/AutomatonBuilder.java" />
         <option value="$PROJECT_DIR$/src/State.java" />
-        <option value="$PROJECT_DIR$/src/AutomatonBuilder.java" />
         <option value="$PROJECT_DIR$/src/SpellChecker.java" />
+        <option value="$PROJECT_DIR$/src/AutomatonBuilder.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1920" />
     <option name="y" value="-2" />
     <option name="width" value="1440" />
@@ -190,7 +186,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-2" width="1440" height="902" extended-state="6" />
+    <frame x="1920" y="-2" width="1440" height="902" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20014347" />
@@ -254,8 +250,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="496" column="86" lean-forward="true" selection-start-line="496" selection-start-column="8" selection-end-line="496" selection-end-column="86" />
+        <state relative-caret-position="432">
+          <caret line="524" column="9" selection-start-line="524" selection-start-column="9" selection-end-line="524" selection-end-column="9" />
           <folding>
             <element signature="e#23143#23144#0" expanded="true" />
             <element signature="e#23180#23181#0" expanded="true" />

@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf7d0d38-f2c8-4ab8-a580-c96e29adec2c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutomatonBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpellChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpellChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpellChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpellChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MinimalDFAUnsortedInput/src/AutomatonBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/AutomatonBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/SpellChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/SpellChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Trie/src/SpellChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Trie/src/SpellChecker.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="709">
-              <caret line="339" column="86" selection-start-line="339" selection-start-column="86" selection-end-line="339" selection-end-column="86" />
+            <state relative-caret-position="244">
+              <caret line="241" column="29" selection-start-line="241" selection-start-column="29" selection-end-line="241" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -35,8 +31,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+            <state>
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -157,20 +152,19 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/AutomatonBuilder.java" />
-    <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="339" column="86" selection-start-line="339" selection-start-column="86" selection-end-line="339" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+        <state>
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutomatonBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="241" column="29" selection-start-line="241" selection-start-column="29" selection-end-line="241" selection-end-column="29" />
         </state>
       </provider>
     </entry>
